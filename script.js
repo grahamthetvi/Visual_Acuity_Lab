@@ -1,3 +1,72 @@
+// Site UI: theme + disclaimer
+const THEME_KEY = "gvat-theme";
+const DISCLAIMER_KEY = "gvat-disclaimer-accepted";
+
+function setStoredTheme(theme) {
+    try {
+        localStorage.setItem(THEME_KEY, theme);
+    } catch {
+        /* ignore */
+    }
+}
+
+function applyTheme(theme) {
+    const t = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", t);
+    setStoredTheme(t);
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+        btn.setAttribute("data-mode", t);
+        btn.setAttribute("aria-pressed", t === "light" ? "true" : "false");
+        btn.setAttribute("aria-label", t === "dark" ? "Use light color theme" : "Use dark color theme");
+    }
+}
+
+function initThemeToggle() {
+    const btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    applyTheme(current);
+    btn.addEventListener("click", () => {
+        const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+        applyTheme(next);
+    });
+}
+
+function initDisclaimerDialog() {
+    const dialog = document.getElementById("disclaimer-dialog");
+    const main = document.getElementById("main");
+    const accept = document.getElementById("disclaimer-accept");
+    if (!dialog || !accept) return;
+    let accepted = false;
+    try {
+        accepted = localStorage.getItem(DISCLAIMER_KEY) === "1";
+    } catch {
+        accepted = false;
+    }
+    if (accepted) {
+        if (main) main.removeAttribute("inert");
+        return;
+    }
+    if (main) main.setAttribute("inert", "");
+    if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+    }
+    const closeAndRemember = () => {
+        try {
+            localStorage.setItem(DISCLAIMER_KEY, "1");
+        } catch {
+            /* ignore */
+        }
+        if (main) main.removeAttribute("inert");
+        dialog.close();
+    };
+    accept.addEventListener("click", closeAndRemember);
+    dialog.addEventListener("cancel", (e) => {
+        e.preventDefault();
+    });
+}
+
 // Constants
 const NEAR_MAX_M = 0.4064;    // <= 16 inches
 const FAR_MIN_M  = 3.048;     // >= 120 inches (10 feet)
@@ -147,3 +216,13 @@ form.addEventListener('submit', (e) => {
         announcer.textContent = `An error occurred during calculation: ${err.message}`;
     }
 });
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+        initThemeToggle();
+        initDisclaimerDialog();
+    });
+} else {
+    initThemeToggle();
+    initDisclaimerDialog();
+}
