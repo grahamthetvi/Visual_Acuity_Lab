@@ -61,8 +61,32 @@ function getStoredLocale() {
     return null;
 }
 
+/**
+ * Directory URL where script.js is served from (trailing slash).
+ * Resolves correctly for project sites (e.g. GitHub Pages /repo/ without trailing slash on the page URL).
+ */
+function getAssetBaseUrl() {
+    const scripts = document.getElementsByTagName("script");
+    for (let i = scripts.length - 1; i >= 0; i--) {
+        const src = scripts[i].src;
+        if (!src || !/\/script\.js(\?|#|$)/i.test(src)) continue;
+        try {
+            const u = new URL(src);
+            const p = u.pathname;
+            const slash = p.lastIndexOf("/");
+            const dir = slash >= 0 ? p.slice(0, slash + 1) : "/";
+            return `${u.origin}${dir}`;
+        } catch {
+            /* ignore */
+        }
+    }
+    return new URL("./", window.location.href).href;
+}
+
 async function loadMessages(locale) {
-    const res = await fetch(`locales/${locale}.json`, { cache: "force-cache" });
+    const base = getAssetBaseUrl();
+    const url = new URL(`locales/${locale}.json`, base).href;
+    const res = await fetch(url, { cache: "no-cache" });
     if (!res.ok) throw new Error(`Failed to load locale ${locale}`);
     return res.json();
 }
