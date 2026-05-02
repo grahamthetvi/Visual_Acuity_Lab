@@ -32,10 +32,12 @@
     <div class="top-bar" role="region" data-i18n-aria-label="topBar.ariaLabel" aria-label="Site tools">
         <div class="lang-switcher">
             <label for="lang-switcher" class="sr-only" data-i18n="langSwitcher.label">Language</label>
-            <select id="lang-switcher" class="lang-switcher__select" data-i18n-title="langSwitcher.title" title="Display language">
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
+            <div class="lang-switcher__field">
+                <select id="lang-switcher" class="lang-switcher__select" data-i18n-title="langSwitcher.title" title="Display language">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
         </div>
         <button type="button" class="icon-link" id="theme-toggle" data-i18n-title="theme.title" title="Switch color theme" aria-label="Use light color theme" aria-pressed="false" data-mode="dark">
             <span class="icon-link__icon" aria-hidden="true">
