@@ -1,6 +1,170 @@
-// Site UI: theme + disclaimer
+// Site UI: theme, disclaimer, i18n, calculator
 const THEME_KEY = "gvat-theme";
 const DISCLAIMER_KEY = "gvat-disclaimer-accepted";
+const LANG_KEY = "gvat-lang";
+
+const SUPPORTED_LOCALES = ["en", "ar"];
+
+const LOCALE_META = {
+    en: { htmlLang: "en", dir: "ltr" },
+    ar: { htmlLang: "ar", dir: "rtl" },
+};
+
+/** @type {Record<string, string>} */
+let messages = {};
+
+function interpolate(str, vars) {
+    if (!str || !vars) return str;
+    return str.replace(/\{(\w+)\}/g, (_, name) => (vars[name] !== undefined && vars[name] !== null ? String(vars[name]) : `{${name}}`));
+}
+
+function t(key, vars) {
+    const raw = messages[key];
+    const s = raw !== undefined ? raw : key;
+    return vars ? interpolate(s, vars) : s;
+}
+
+function normalizeLocale(code) {
+    if (!code || typeof code !== "string") return "en";
+    const base = code.toLowerCase().split("-")[0];
+    return SUPPORTED_LOCALES.includes(base) ? base : "en";
+}
+
+function pickLocaleFromBrowser() {
+    const list = [];
+    try {
+        if (navigator.languages && navigator.languages.length) {
+            list.push(...navigator.languages);
+        }
+    } catch {
+        /* ignore */
+    }
+    try {
+        if (navigator.language) list.push(navigator.language);
+    } catch {
+        /* ignore */
+    }
+    for (const lang of list) {
+        const hit = normalizeLocale(lang);
+        if (SUPPORTED_LOCALES.includes(hit)) return hit;
+    }
+    return "en";
+}
+
+function getStoredLocale() {
+    try {
+        const v = localStorage.getItem(LANG_KEY);
+        if (v && SUPPORTED_LOCALES.includes(v)) return v;
+    } catch {
+        /* ignore */
+    }
+    return null;
+}
+
+async function loadMessages(locale) {
+    const res = await fetch(`locales/${locale}.json`, { cache: "force-cache" });
+    if (!res.ok) throw new Error(`Failed to load locale ${locale}`);
+    return res.json();
+}
+
+function applyDocumentLang(locale) {
+    const meta = LOCALE_META[locale] || LOCALE_META.en;
+    document.documentElement.lang = meta.htmlLang;
+    document.documentElement.dir = meta.dir;
+}
+
+function applyMetaAndTitle() {
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", t("meta.description"));
+    document.title = t("page.title");
+}
+
+function applyStaticI18n() {
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (!key) return;
+        el.textContent = t(key);
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-html");
+        if (!key) return;
+        el.innerHTML = t(key);
+    });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-aria-label");
+        if (!key) return;
+        el.setAttribute("aria-label", t(key));
+    });
+    document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-title");
+        if (!key) return;
+        el.setAttribute("title", t(key));
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (!key) return;
+        el.setAttribute("placeholder", t(key));
+    });
+}
+
+function refreshLangSwitcher() {
+    const sel = document.getElementById("lang-switcher");
+    if (!sel) return;
+    sel.querySelectorAll("option").forEach((opt) => {
+        const code = opt.value;
+        const key = `lang.name.${code}`;
+        if (messages[key]) opt.textContent = t(key);
+    });
+    sel.setAttribute("title", t("langSwitcher.title"));
+    sel.setAttribute("aria-label", t("langSwitcher.title"));
+}
+
+function setStoredLocale(locale) {
+    try {
+        localStorage.setItem(LANG_KEY, locale);
+    } catch {
+        /* ignore */
+    }
+}
+
+async function setLocale(locale) {
+    const code = normalizeLocale(locale);
+    try {
+        const loaded = await loadMessages(code);
+        return setLocaleWithMessages(code, loaded);
+    } catch {
+        if (code !== "en") {
+            const loaded = await loadMessages("en");
+            return setLocaleWithMessages("en", loaded);
+        }
+        throw new Error("Could not load translations");
+    }
+}
+
+function setLocaleWithMessages(code, loaded) {
+    messages = loaded;
+    applyDocumentLang(code);
+    applyMetaAndTitle();
+    applyStaticI18n();
+    refreshLangSwitcher();
+    const sel = document.getElementById("lang-switcher");
+    if (sel) sel.value = code;
+    setStoredLocale(code);
+    const theme = document.documentElement.getAttribute("data-theme") || "dark";
+    applyTheme(theme);
+    refreshSupportLinkAttributes();
+    if (typeof window.__gvatRefreshResults === "function") {
+        window.__gvatRefreshResults();
+    }
+    return code;
+}
+
+function refreshSupportLinkAttributes() {
+    const link = document.getElementById("support-link");
+    if (!link) return;
+    link.setAttribute("title", t("support.title"));
+    link.setAttribute("aria-label", t("support.ariaLabel"));
+}
 
 function setStoredTheme(theme) {
     try {
@@ -11,14 +175,15 @@ function setStoredTheme(theme) {
 }
 
 function applyTheme(theme) {
-    const t = theme === "light" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", t);
-    setStoredTheme(t);
+    const tTheme = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", tTheme);
+    setStoredTheme(tTheme);
     const btn = document.getElementById("theme-toggle");
     if (btn) {
-        btn.setAttribute("data-mode", t);
-        btn.setAttribute("aria-pressed", t === "light" ? "true" : "false");
-        btn.setAttribute("aria-label", t === "dark" ? "Use light color theme" : "Use dark color theme");
+        btn.setAttribute("data-mode", tTheme);
+        btn.setAttribute("aria-pressed", tTheme === "light" ? "true" : "false");
+        btn.setAttribute("aria-label", tTheme === "dark" ? t("theme.ariaLabelDark") : t("theme.ariaLabelLight"));
+        btn.setAttribute("title", t("theme.title"));
     }
 }
 
@@ -67,42 +232,55 @@ function initDisclaimerDialog() {
     });
 }
 
-// Constants
-const NEAR_MAX_M = 0.4064;    // <= 16 inches
-const FAR_MIN_M  = 3.048;     // >= 120 inches (10 feet)
+function initLangSwitcher() {
+    const sel = document.getElementById("lang-switcher");
+    if (!sel) return;
+    sel.addEventListener("change", async () => {
+        const v = normalizeLocale(sel.value);
+        sel.disabled = true;
+        try {
+            await setLocale(v);
+        } catch {
+            sel.value = getStoredLocale() || "en";
+        } finally {
+            sel.disabled = false;
+        }
+    });
+}
 
-// Logic ported from Python
+// --- Calculator ---
+const NEAR_MAX_M = 0.4064;
+const FAR_MIN_M = 3.048;
+
 function toMeters(value, unit) {
-    if (unit === 'in') {
+    if (unit === "in") {
         return value * 0.0254;
-    } else if (unit === 'ft') {
+    }
+    if (unit === "ft") {
         return value * 0.3048;
-    } else if (unit === 'mm') {
+    }
+    if (unit === "mm") {
         return value / 1000.0;
-    } else if (unit === 'cm') {
+    }
+    if (unit === "cm") {
         return value / 100.0;
     }
-    throw new Error(`Unrecognized unit '${unit}'`);
+    throw new Error(t("error.unrecognizedUnit", { unit }));
 }
 
 function calculateExactVisualAngle(size_m, distance_m) {
-    // Exact geometric formula: 2 * arctan(size / (2 * distance))
     const angle_rad = 2.0 * Math.atan(size_m / (2.0 * distance_m));
     return angle_rad * (10800.0 / Math.PI);
 }
 
 const SNELLEN_NUMERATOR = 20;
 const METRIC_SNELLEN_NUM = 6;
-const METRIC_SNELLEN_RATIO = METRIC_SNELLEN_NUM / SNELLEN_NUMERATOR; // 6/20, meters vs feet
+const METRIC_SNELLEN_RATIO = METRIC_SNELLEN_NUM / SNELLEN_NUMERATOR;
 
 function calculateSnellenDenominator(visual_angle_minutes) {
     return (visual_angle_minutes / 5.0) * 20.0;
 }
 
-/**
- * @param {number} d - Snellen denominator (X in N/X)
- * @param {number} distanceM - Viewing distance in meters (for M-units)
- */
 function getAlternateAcuityFormats(d, distanceM) {
     if (!(d > 0) || !Number.isFinite(d)) {
         return null;
@@ -121,149 +299,234 @@ function getAlternateAcuityFormats(d, distanceM) {
     };
 }
 
-function classifyDistance(distance_m) {
-    if (distance_m <= NEAR_MAX_M) {
-        return "Near Vision";
-    } else if (distance_m < FAR_MIN_M) {
-        return "Intermediate Vision";
-    } else {
-        return "Far Vision (Distance)";
-    }
+/** @returns {'near'|'intermediate'|'far'} */
+function classifyDistanceZoneKey(distance_m) {
+    if (distance_m <= NEAR_MAX_M) return "near";
+    if (distance_m < FAR_MIN_M) return "intermediate";
+    return "far";
 }
 
 function calculateDiopters(distance_m) {
     return 1.0 / distance_m;
 }
 
-// DOM Elements
-const form = document.getElementById('acuity-form');
-const resultsSection = document.getElementById('results-section');
-const announcer = document.getElementById('result-announcer');
+const form = document.getElementById("acuity-form");
+const resultsSection = document.getElementById("results-section");
+const announcer = document.getElementById("result-announcer");
 
-const sizeInput = document.getElementById('object-size-val');
-const sizeUnit = document.getElementById('object-size-unit');
-const sizeError = document.getElementById('size-error');
+const sizeInput = document.getElementById("object-size-val");
+const sizeUnit = document.getElementById("object-size-unit");
+const sizeError = document.getElementById("size-error");
 
-const distInput = document.getElementById('viewing-dist-val');
-const distUnit = document.getElementById('viewing-dist-unit');
-const distError = document.getElementById('dist-error');
+const distInput = document.getElementById("viewing-dist-val");
+const distUnit = document.getElementById("viewing-dist-unit");
+const distError = document.getElementById("dist-error");
+
+/** @type {null | object} */
+let lastCalcState = null;
 
 function validateInput() {
     let isValid = true;
-    sizeError.textContent = '';
-    distError.textContent = '';
-    
-    // Reset aria-invalid
-    sizeInput.setAttribute('aria-invalid', 'false');
-    distInput.setAttribute('aria-invalid', 'false');
+    sizeError.textContent = "";
+    distError.textContent = "";
+
+    sizeInput.setAttribute("aria-invalid", "false");
+    distInput.setAttribute("aria-invalid", "false");
 
     if (!sizeInput.value || parseFloat(sizeInput.value) <= 0) {
-        sizeError.textContent = 'Please enter a valid object size greater than 0.';
-        sizeInput.setAttribute('aria-invalid', 'true');
+        sizeError.textContent = t("validation.sizeError");
+        sizeInput.setAttribute("aria-invalid", "true");
         isValid = false;
     }
 
     if (!distInput.value || parseFloat(distInput.value) <= 0) {
-        distError.textContent = 'Please enter a valid viewing distance greater than 0.';
-        distInput.setAttribute('aria-invalid', 'true');
+        distError.textContent = t("validation.distanceError");
+        distInput.setAttribute("aria-invalid", "true");
         isValid = false;
     }
 
     return isValid;
 }
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+function diopterDisplay(needsAccommodation, dioptersValue) {
+    if (!needsAccommodation) return t("results.diopters.na");
+    const unit = t("results.diopters.unit");
+    return `${dioptersValue.toFixed(2)} ${unit}`;
+}
 
-    if (!validateInput()) {
-        announcer.textContent = "Error in form submission. Please correct the invalid fields.";
+function renderResultsFromState(state) {
+    if (!state) return;
+
+    const {
+        sizeVal,
+        sUnit,
+        distVal,
+        dUnit,
+        size_m,
+        distance_m,
+        zoneKey,
+        visualAngleMin,
+        dSnellen,
+        alt,
+        needsAccommodation,
+        dioptersValue,
+    } = state;
+
+    const distance_in = distance_m / 0.0254;
+    const distance_ft = distance_m / 0.3048;
+    const size_in = size_m / 0.0254;
+    const size_mm = size_m * 1000;
+
+    const sizeConv = interpolate(t("results.conversion.size"), {
+        in: size_in.toFixed(2),
+        mm: size_mm.toFixed(1),
+    });
+    const distConv = interpolate(t("results.conversion.distance"), {
+        in: distance_in.toFixed(1),
+        ft: distance_ft.toFixed(2),
+        m: distance_m.toFixed(3),
+    });
+
+    const zoneLabel = t(`results.zone.${zoneKey}`);
+
+    document.getElementById("res-size").textContent = `${sizeVal} ${sUnit}`;
+    document.getElementById("res-size-conv").textContent = sizeConv;
+
+    document.getElementById("res-dist").textContent = `${distVal} ${dUnit}`;
+    document.getElementById("res-dist-conv").textContent = distConv;
+
+    document.getElementById("res-zone").textContent = zoneLabel;
+    document.getElementById("res-angle").textContent = `${visualAngleMin.toFixed(2)} ${t("results.angleUnit")}`;
+
+    document.getElementById("res-snellen").textContent = `20/${dSnellen}`;
+
+    if (alt) {
+        document.getElementById("res-mar").textContent = `${alt.mar.toFixed(2)} ${t("results.marUnit")}`;
+        document.getElementById("res-logmar").textContent = alt.logMar.toFixed(2);
+        document.getElementById("res-decimal").textContent = alt.decimal.toFixed(2);
+        document.getElementById("res-metric").textContent = alt.metricStr;
+        document.getElementById("res-munit").textContent = `${alt.mUnit.toFixed(2)} M`;
+    }
+
+    const diopterText = diopterDisplay(needsAccommodation, dioptersValue);
+    document.getElementById("res-diopters").textContent = diopterText;
+
+    const sUnitText = sizeUnit.options[sizeUnit.selectedIndex].text;
+    const dUnitText = distUnit.options[distUnit.selectedIndex].text;
+    const altText = alt
+        ? t("announce.altBlock", {
+              mar: alt.mar.toFixed(2),
+              logmar: alt.logMar.toFixed(2),
+              decimal: alt.decimal.toFixed(2),
+              metric: alt.metricStr,
+              munits: alt.mUnit.toFixed(2),
+          })
+        : "";
+
+    let announcement = t("announce.calcCompleteIntro", {
+        sizeVal: String(sizeVal),
+        sizeUnitLabel: sUnitText,
+        distVal: String(distVal),
+        distUnitLabel: dUnitText,
+        d: String(dSnellen),
+    });
+    announcement += altText;
+    announcement += t("announce.zone", { zone: zoneLabel });
+    announcement += needsAccommodation
+        ? t("announce.accommodationYes", { diopters: diopterText })
+        : t("announce.accommodationNo");
+
+    announcer.textContent = announcement;
+}
+
+window.__gvatRefreshResults = function () {
+    if (lastCalcState) renderResultsFromState(lastCalcState);
+};
+
+function initCalculator() {
+    if (!form || !sizeInput || !distInput || !sizeUnit || !distUnit || !sizeError || !distError || !resultsSection || !announcer) {
         return;
     }
 
-    const sizeVal = parseFloat(sizeInput.value);
-    const sUnit = sizeUnit.value;
-    
-    const distVal = parseFloat(distInput.value);
-    const dUnit = distUnit.value;
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!validateInput()) {
+            announcer.textContent = t("announce.formError");
+            return;
+        }
+
+        const sizeVal = parseFloat(sizeInput.value);
+        const sUnit = sizeUnit.value;
+
+        const distVal = parseFloat(distInput.value);
+        const dUnit = distUnit.value;
+
+        try {
+            const size_m = toMeters(sizeVal, sUnit);
+            const distance_m = toMeters(distVal, dUnit);
+
+            const zoneKey = classifyDistanceZoneKey(distance_m);
+            const visualAngleMin = calculateExactVisualAngle(size_m, distance_m);
+            const snellenDenom = calculateSnellenDenominator(visualAngleMin);
+            const needsAccommodation = zoneKey === "near" || zoneKey === "intermediate";
+
+            const dSnellen = Math.round(snellenDenom);
+            const alt = getAlternateAcuityFormats(dSnellen, distance_m);
+
+            let dioptersValue = 0;
+            if (needsAccommodation) {
+                dioptersValue = calculateDiopters(distance_m);
+            }
+
+            lastCalcState = {
+                sizeVal,
+                sUnit,
+                distVal,
+                dUnit,
+                size_m,
+                distance_m,
+                zoneKey,
+                visualAngleMin,
+                dSnellen,
+                alt,
+                needsAccommodation,
+                dioptersValue,
+            };
+
+            resultsSection.classList.remove("hidden");
+            resultsSection.setAttribute("aria-hidden", "false");
+
+            renderResultsFromState(lastCalcState);
+        } catch (err) {
+            announcer.textContent = t("announce.calcError", { message: err.message });
+        }
+    });
+}
+
+async function initApp() {
+    const stored = getStoredLocale();
+    const initial = stored || pickLocaleFromBrowser();
+    const code = normalizeLocale(initial);
 
     try {
-        const size_m = toMeters(sizeVal, sUnit);
-        const distance_m = toMeters(distVal, dUnit);
-
-        const zone = classifyDistance(distance_m);
-        const visualAngleMin = calculateExactVisualAngle(size_m, distance_m);
-        const snellenDenom = calculateSnellenDenominator(visualAngleMin);
-        const needsAccommodation = (zone === "Near Vision" || zone === "Intermediate Vision");
-
-        // Calculate conversions for display
-        const distance_in = distance_m / 0.0254;
-        const distance_ft = distance_m / 0.3048;
-        const size_in = size_m / 0.0254;
-        const size_mm = size_m * 1000;
-
-        // Update DOM
-        document.getElementById('res-size').textContent = `${sizeVal} ${sUnit}`;
-        document.getElementById('res-size-conv').textContent = `(${size_in.toFixed(2)} in | ${size_mm.toFixed(1)} mm)`;
-        
-        document.getElementById('res-dist').textContent = `${distVal} ${dUnit}`;
-        document.getElementById('res-dist-conv').textContent = `(${distance_in.toFixed(1)} in | ${distance_ft.toFixed(2)} ft | ${distance_m.toFixed(3)} m)`;
-
-        document.getElementById('res-zone').textContent = zone;
-        document.getElementById('res-angle').textContent = `${visualAngleMin.toFixed(2)} arc-minutes`;
-        
-        const dSnellen = Math.round(snellenDenom);
-        const finalAcuity = `20/${dSnellen}`;
-        document.getElementById('res-snellen').textContent = finalAcuity;
-
-        const alt = getAlternateAcuityFormats(dSnellen, distance_m);
-        if (alt) {
-            document.getElementById('res-mar').textContent = `${alt.mar.toFixed(2)} min arc`;
-            document.getElementById('res-logmar').textContent = alt.logMar.toFixed(2);
-            document.getElementById('res-decimal').textContent = alt.decimal.toFixed(2);
-            document.getElementById('res-metric').textContent = alt.metricStr;
-            document.getElementById('res-munit').textContent = `${alt.mUnit.toFixed(2)} M`;
-        }
-
-        let diopterText = "N/A (Far zone)";
-        if (needsAccommodation) {
-            const diopters = calculateDiopters(distance_m);
-            diopterText = `${diopters.toFixed(2)} D`;
-        }
-        document.getElementById('res-diopters').textContent = diopterText;
-
-        // Reveal results
-        resultsSection.classList.remove('hidden');
-        resultsSection.setAttribute('aria-hidden', 'false');
-
-        // Build string for screen reader
-        const sUnitText = sizeUnit.options[sizeUnit.selectedIndex].text;
-        const dUnitText = distUnit.options[distUnit.selectedIndex].text;
-        const altText = alt
-            ? ` MAR is ${alt.mar.toFixed(2)} minutes of arc, LogMAR is ${alt.logMar.toFixed(2)}, decimal acuity is ${alt.decimal.toFixed(2)}, metric acuity is ${alt.metricStr}, and M-units at this distance is ${alt.mUnit.toFixed(2)} M.`
-            : "";
-        let announcement = `Calculation complete. For an object size of ${sizeVal} ${sUnitText} at a distance of ${distVal} ${dUnitText}, the equivalent visual acuity is 20 over ${dSnellen}.${altText} The distance zone is ${zone}. `;
-        if (needsAccommodation) {
-            announcement += `The accommodative demand is ${diopterText}.`;
-        } else {
-            announcement += `There is no accommodative demand.`;
-        }
-
-        announcer.textContent = announcement;
-        
-        // Ensure visual focus goes to results for screen reader navigation if desired, 
-        // but since we are using aria-live, the user gets it automatically.
-
-    } catch (err) {
-        announcer.textContent = `An error occurred during calculation: ${err.message}`;
+        const loaded = await loadMessages(code);
+        setLocaleWithMessages(code, loaded);
+    } catch {
+        const loaded = await loadMessages("en");
+        setLocaleWithMessages("en", loaded);
     }
-});
+
+    initThemeToggle();
+    initDisclaimerDialog();
+    initLangSwitcher();
+    initCalculator();
+}
 
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
-        initThemeToggle();
-        initDisclaimerDialog();
+        initApp();
     });
 } else {
-    initThemeToggle();
-    initDisclaimerDialog();
+    initApp();
 }

@@ -29,19 +29,26 @@
     </script>
 </head>
 <body>
-    <div class="top-bar" role="region" aria-label="Site tools">
-        <button type="button" class="icon-link" id="theme-toggle" title="Switch color theme" aria-label="Use light color theme" aria-pressed="false" data-mode="dark">
+    <div class="top-bar" role="region" data-i18n-aria-label="topBar.ariaLabel" aria-label="Site tools">
+        <div class="lang-switcher">
+            <label for="lang-switcher" class="sr-only" data-i18n="langSwitcher.label">Language</label>
+            <select id="lang-switcher" class="lang-switcher__select" data-i18n-title="langSwitcher.title" title="Display language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+        <button type="button" class="icon-link" id="theme-toggle" data-i18n-title="theme.title" title="Switch color theme" aria-label="Use light color theme" aria-pressed="false" data-mode="dark">
             <span class="icon-link__icon" aria-hidden="true">
                 <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
                 <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
             </span>
         </button>
-        <a class="icon-link" id="support-link" href="mailto:grahamthetvi@icloud.com?subject=Graham%20Visual%20Acuity%20Tester%20Support" rel="noopener noreferrer" title="Email support" aria-label="Email support, opens mail app with subject pre-filled">
+        <a class="icon-link" id="support-link" href="mailto:grahamthetvi@icloud.com?subject=Graham%20Visual%20Acuity%20Tester%20Support" rel="noopener noreferrer" data-i18n-title="support.title" data-i18n-aria-label="support.ariaLabel" title="Email support" aria-label="Email support, opens mail app with subject pre-filled">
             <span class="icon-link__icon" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
             </span>
         </a>
-        <a class="icon-link" id="coffee-link" href="https://buymeacoffee.com/grahamthetvi" target="_blank" rel="noopener noreferrer" title="Buy me a coffee" aria-label="Buy me a coffee (opens in a new tab)">
+        <a class="icon-link" id="coffee-link" href="https://buymeacoffee.com/grahamthetvi" target="_blank" rel="noopener noreferrer" data-i18n-title="coffee.title" data-i18n-aria-label="coffee.ariaLabel" title="Buy me a coffee" aria-label="Buy me a coffee (opens in a new tab)">
             <span class="icon-link__icon" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><line x1="6" x2="6" y1="2" y2="4"></line><line x1="10" x2="10" y1="2" y2="4"></line><line x1="14" x2="14" y1="2" y2="4"></line></svg>
             </span>
@@ -49,11 +56,11 @@
     </div>
 
     <dialog id="disclaimer-dialog" class="disclaimer-dialog" aria-labelledby="disclaimer-title">
-        <h2 id="disclaimer-title">Important disclaimer</h2>
-        <p>The information and results produced by this website are for informational purposes only. They are based on the formulas and assumptions described in this tool and are <strong>not</strong> medical, legal, or professional advice. We make <strong>no</strong> warranties, express or implied, about accuracy or fitness for a particular purpose.</p>
-        <p>If the underlying equations or their application are incomplete, outdated, or incorrect, the outputs shown here will also be wrong. <strong>Do not</strong> rely on this site as a substitute for qualified professional judgment, clinical testing, or legal review. <strong>We are not liable</strong> for any decisions, losses, or other consequences arising from use of this calculator. By continuing, you acknowledge and accept these limitations.</p>
+        <h2 id="disclaimer-title" data-i18n="disclaimer.title">Important disclaimer</h2>
+        <p id="disclaimer-body-1" data-i18n-html="disclaimer.body1">The information and results produced by this website are for informational purposes only. They are based on the formulas and assumptions described in this tool and are <strong>not</strong> medical, legal, or professional advice. We make <strong>no</strong> warranties, express or implied, about accuracy or fitness for a particular purpose.</p>
+        <p id="disclaimer-body-2" data-i18n-html="disclaimer.body2">If the underlying equations or their application are incomplete, outdated, or incorrect, the outputs shown here will also be wrong. <strong>Do not</strong> rely on this site as a substitute for qualified professional judgment, clinical testing, or legal review. <strong>We are not liable</strong> for any decisions, losses, or other consequences arising from use of this calculator. By continuing, you acknowledge and accept these limitations.</p>
         <div class="disclaimer-dialog__actions">
-            <button type="button" class="disclaimer-accept" id="disclaimer-accept">I understand and agree</button>
+            <button type="button" class="disclaimer-accept" id="disclaimer-accept" data-i18n="disclaimer.accept">I understand and agree</button>
         </div>
     </dialog>
 
@@ -65,46 +72,46 @@
                     <circle cx="12" cy="12" r="3"></circle>
                 </svg>
             </div>
-            <h1>Visual Acuity Calculator</h1>
-            <p>Calculate equivalent Snellen visual acuity.</p>
+            <h1 data-i18n="header.title">Visual Acuity Calculator</h1>
+            <p data-i18n="header.tagline">Calculate equivalent Snellen visual acuity.</p>
         </header>
 
         <section class="welcome-card" aria-labelledby="welcome-heading">
-            <h2 id="welcome-heading">About This Tool</h2>
-            <p class="purpose-text">This calculator determines equivalent Snellen visual acuity from an object's physical size and its distance from the viewer. It also categorizes the viewing distance (Near, Intermediate, Far) and reports the expected accommodative demand.</p>
+            <h2 id="welcome-heading" data-i18n="about.title">About This Tool</h2>
+            <p class="purpose-text" data-i18n="about.purpose">This calculator determines equivalent Snellen visual acuity from an object's physical size and its distance from the viewer. It also categorizes the viewing distance (Near, Intermediate, Far) and reports the expected accommodative demand.</p>
             
             <details class="logic-details">
-                <summary>Clinical Logic & Formulas (For Professionals)</summary>
+                <summary data-i18n="about.logicSummary">Clinical Logic & Formulas (For Professionals)</summary>
                 <div class="logic-content">
-                    <p><strong>Visual Angle:</strong> Uses the exact geometric split-triangle formula to determine the subtended angle in arc-minutes:</p>
+                    <p data-i18n-html="about.visualAngleIntro"><strong>Visual Angle:</strong> Uses the exact geometric split-triangle formula to determine the subtended angle in arc-minutes:</p>
                     <code class="formula-code">2 &times; arctan(size / (2 &times; distance)) &times; (10800 / &pi;)</code>
                     
-                    <p><strong>Equivalent Acuity:</strong> Derives the Snellen denominator based on the standard 5 arc-minute letter:</p>
+                    <p data-i18n-html="about.equivalentAcuityIntro"><strong>Equivalent Acuity:</strong> Derives the Snellen denominator based on the standard 5 arc-minute letter:</p>
                     <code class="formula-code">(visual_angle_minutes / 5) &times; 20</code>
                     
-                    <p><strong>Accommodative Demand:</strong> Calculated in Diopters based on viewing distance:</p>
+                    <p data-i18n-html="about.accommodativeIntro"><strong>Accommodative Demand:</strong> Calculated in Diopters based on viewing distance:</p>
                     <code class="formula-code">1 / distance_in_meters</code>
 
-                    <p><strong>Alternate acuity (N = 20, D = Snellen denominator):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; metric 6/X uses D<sub>metric</sub> = D &times; (6/20), shown as 6/round(D<sub>metric</sub>); M-units at the entered distance: M = distance_m &times; (D / N).</p>
+                    <p data-i18n-html="about.alternateFormats"><strong>Alternate acuity (N = 20, D = Snellen denominator):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; metric 6/X uses D<sub>metric</sub> = D &times; (6/20), shown as 6/round(D<sub>metric</sub>); M-units at the entered distance: M = distance_m &times; (D / N).</p>
                 </div>
             </details>
         </section>
 
         <section class="calculator-card">
-            <form id="acuity-form" aria-label="Visual Acuity Calculation Form" novalidate>
+            <form id="acuity-form" data-i18n-aria-label="form.ariaLabel" aria-label="Visual Acuity Calculation Form" novalidate>
                 
                 <fieldset>
-                    <legend class="sr-only">Object Size Specifications</legend>
+                    <legend class="sr-only" data-i18n="form.legend.objectSize">Object Size Specifications</legend>
                     <div class="form-group">
-                        <label for="object-size-val">Object Size</label>
+                        <label for="object-size-val" data-i18n="form.label.objectSize">Object Size</label>
                         <div class="input-group">
-                            <input type="number" id="object-size-val" name="object-size-val" step="any" required aria-describedby="size-error" placeholder="e.g. 2">
-                            <label for="object-size-unit" class="sr-only">Object Size Unit</label>
+                            <input type="number" id="object-size-val" name="object-size-val" step="any" required aria-describedby="size-error" data-i18n-placeholder="form.placeholder.objectSize" placeholder="e.g. 2">
+                            <label for="object-size-unit" class="sr-only" data-i18n="form.label.objectSizeUnit">Object Size Unit</label>
                             <select id="object-size-unit" name="object-size-unit">
-                                <option value="in">Inches (in)</option>
-                                <option value="mm">Millimeters (mm)</option>
-                                <option value="cm">Centimeters (cm)</option>
-                                <option value="ft">Feet (ft)</option>
+                                <option value="in" data-i18n="form.option.in">Inches (in)</option>
+                                <option value="mm" data-i18n="form.option.mm">Millimeters (mm)</option>
+                                <option value="cm" data-i18n="form.option.cm">Centimeters (cm)</option>
+                                <option value="ft" data-i18n="form.option.ft">Feet (ft)</option>
                             </select>
                         </div>
                         <div id="size-error" class="error-message" aria-live="polite"></div>
@@ -112,24 +119,24 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend class="sr-only">Viewing Distance Specifications</legend>
+                    <legend class="sr-only" data-i18n="form.legend.viewingDistance">Viewing Distance Specifications</legend>
                     <div class="form-group">
-                        <label for="viewing-dist-val">Viewing Distance</label>
+                        <label for="viewing-dist-val" data-i18n="form.label.viewingDistance">Viewing Distance</label>
                         <div class="input-group">
-                            <input type="number" id="viewing-dist-val" name="viewing-dist-val" step="any" required aria-describedby="dist-error" placeholder="e.g. 5">
-                            <label for="viewing-dist-unit" class="sr-only">Viewing Distance Unit</label>
+                            <input type="number" id="viewing-dist-val" name="viewing-dist-val" step="any" required aria-describedby="dist-error" data-i18n-placeholder="form.placeholder.viewingDistance" placeholder="e.g. 5">
+                            <label for="viewing-dist-unit" class="sr-only" data-i18n="form.label.viewingDistanceUnit">Viewing Distance Unit</label>
                             <select id="viewing-dist-unit" name="viewing-dist-unit">
-                                <option value="ft">Feet (ft)</option>
-                                <option value="in">Inches (in)</option>
-                                <option value="cm">Centimeters (cm)</option>
-                                <option value="mm">Millimeters (mm)</option>
+                                <option value="ft" data-i18n="form.option.distFt">Feet (ft)</option>
+                                <option value="in" data-i18n="form.option.distIn">Inches (in)</option>
+                                <option value="cm" data-i18n="form.option.distCm">Centimeters (cm)</option>
+                                <option value="mm" data-i18n="form.option.distMm">Millimeters (mm)</option>
                             </select>
                         </div>
                         <div id="dist-error" class="error-message" aria-live="polite"></div>
                     </div>
                 </fieldset>
 
-                <button type="submit" class="submit-btn">Calculate Acuity</button>
+                <button type="submit" class="submit-btn" data-i18n="form.submit">Calculate Acuity</button>
             </form>
         </section>
 
@@ -137,17 +144,17 @@
         <div id="result-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
         <section id="results-section" class="results-card hidden" aria-hidden="true">
-            <h2 id="report-heading">Equivalent Visual Acuity Report</h2>
+            <h2 id="report-heading" data-i18n="results.title">Equivalent Visual Acuity Report</h2>
             
             <div class="report-grid">
                 <div class="report-item">
-                    <span class="report-label">Object Size</span>
+                    <span class="report-label" data-i18n="results.objectSize">Object Size</span>
                     <span id="res-size" class="report-value"></span>
                     <span id="res-size-conv" class="report-sub"></span>
                 </div>
                 
                 <div class="report-item">
-                    <span class="report-label">Viewing Distance</span>
+                    <span class="report-label" data-i18n="results.viewingDistance">Viewing Distance</span>
                     <span id="res-dist" class="report-value"></span>
                     <span id="res-dist-conv" class="report-sub"></span>
                 </div>
@@ -155,46 +162,46 @@
                 <div class="divider" aria-hidden="true"></div>
 
                 <div class="report-item">
-                    <span class="report-label">Distance Zone</span>
+                    <span class="report-label" data-i18n="results.distanceZone">Distance Zone</span>
                     <span id="res-zone" class="report-value highlight"></span>
                 </div>
                 
                 <div class="report-item">
-                    <span class="report-label">Visual Angle</span>
+                    <span class="report-label" data-i18n="results.visualAngle">Visual Angle</span>
                     <span id="res-angle" class="report-value"></span>
                 </div>
 
                 <div class="report-item primary-result">
-                    <span class="report-label">Equivalent Acuity (Snellen)</span>
+                    <span class="report-label" data-i18n="results.snellen">Equivalent Acuity (Snellen)</span>
                     <span id="res-snellen" class="report-value snellen-score"></span>
                 </div>
 
                 <div class="report-item report-item--conversions" role="group" aria-labelledby="alt-acuity-label">
-                    <span id="alt-acuity-label" class="report-label">Alternate formats (from 20 / X above)</span>
+                    <span id="alt-acuity-label" class="report-label" data-i18n="results.altFormatsLabel">Alternate formats (from 20 / X above)</span>
                 </div>
                 <div class="report-item report-item--alt">
-                    <span class="report-label">MAR (min of arc)</span>
-                    <span id="res-mar" class="report-value" aria-label="Minimum angle of resolution in minutes of arc"></span>
+                    <span class="report-label" data-i18n="results.mar">MAR (min of arc)</span>
+                    <span id="res-mar" class="report-value" data-i18n-aria-label="results.marAria" aria-label="Minimum angle of resolution in minutes of arc"></span>
                 </div>
                 <div class="report-item report-item--alt">
-                    <span class="report-label">LogMAR</span>
+                    <span class="report-label" data-i18n="results.logmar">LogMAR</span>
                     <span id="res-logmar" class="report-value"></span>
                 </div>
                 <div class="report-item report-item--alt">
-                    <span class="report-label">Decimal acuity</span>
+                    <span class="report-label" data-i18n="results.decimal">Decimal acuity</span>
                     <span id="res-decimal" class="report-value"></span>
                 </div>
                 <div class="report-item report-item--alt">
-                    <span class="report-label">Metric acuity (6 m)</span>
+                    <span class="report-label" data-i18n="results.metric">Metric acuity (6 m)</span>
                     <span id="res-metric" class="report-value"></span>
                 </div>
                 <div class="report-item report-item--alt">
-                    <span class="report-label">M-units (at this distance)</span>
-                    <span id="res-munit" class="report-value" title="Near print size per ISO; uses your entered viewing distance in meters"></span>
+                    <span class="report-label" data-i18n="results.munits">M-units (at this distance)</span>
+                    <span id="res-munit" class="report-value" data-i18n-title="results.munitsTitle" title="Near print size per ISO; uses your entered viewing distance in meters"></span>
                 </div>
 
                 <div class="report-item">
-                    <span class="report-label">Accommodative Demand</span>
+                    <span class="report-label" data-i18n="results.accommodativeDemand">Accommodative Demand</span>
                     <span id="res-diopters" class="report-value"></span>
                 </div>
             </div>
@@ -202,7 +209,7 @@
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Addison Graham, Creator. Licensed under the MIT License.</p>
+        <p data-i18n="footer.copyright">&copy; 2026 Addison Graham, Creator. Licensed under the MIT License.</p>
     </footer>
 
     <script src="script.js"></script>
