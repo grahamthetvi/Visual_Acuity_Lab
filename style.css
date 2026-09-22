@@ -738,6 +738,43 @@ input:hover, select:hover {
     }
 }
 
+/* Legal / privacy page */
+.legal-page section + section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.legal-page h2 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.legal-page p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.legal-page p + p {
+    margin-top: var(--spacing-sm);
+}
+
+.legal-page code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    background: var(--logic-box-bg);
+    border: 1px solid var(--details-border);
+}
+
+.legal-page a {
+    color: var(--text-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 /* Footer Styling */
 .site-footer {
     text-align: center;
@@ -746,4 +783,14 @@ input:hover, select:hover {
     color: var(--text-secondary);
     font-size: 0.85rem;
     animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.site-footer__links {
+    margin-bottom: var(--spacing-sm);
+}
+
+.site-footer__links a {
+    color: var(--text-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }

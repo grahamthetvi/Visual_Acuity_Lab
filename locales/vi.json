@@ -100,5 +100,26 @@
   "announce.accommodationYes": "Nhu cầu điều tiết là {diopters}.",
   "announce.accommodationNo": "Không có nhu cầu điều tiết.",
 
-  "footer.copyright": "© 2026 Addison Graham, Người tạo. Được cấp phép theo Giấy phép MIT."
+  "footer.nav.ariaLabel": "Liên kết trang",
+  "footer.privacy": "Chính sách quyền riêng tư",
+  "footer.home": "Máy tính",
+  "footer.copyright": "© 2026 Addison Graham, Người tạo. Được cấp phép theo Giấy phép MIT.",
+
+  "privacy.page.title": "Chính sách quyền riêng tư | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab là công cụ tính miễn phí chạy trên trình duyệt. Chúng tôi không thu thập dữ liệu cá nhân và không dùng phân tích.",
+  "privacy.skip.link": "Chuyển đến chính sách quyền riêng tư",
+  "privacy.header.title": "Chính sách quyền riêng tư",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "Tóm tắt",
+  "privacy.section.summary.body": "Visual Acuity Lab là công cụ <strong>miễn phí</strong> chạy hoàn toàn trong trình duyệt. Chúng tôi <strong>không</strong> vận hành tài khoản người dùng, không bán dữ liệu và không dùng quảng cáo hay trình theo dõi phân tích trên trang này.",
+  "privacy.section.noCollection.title": "Chúng tôi không thu thập",
+  "privacy.section.noCollection.body": "Chúng tôi <strong>không</strong> yêu cầu đăng nhập và <strong>không</strong> nhận các số bạn nhập vào máy tính. Phép tính chạy trên thiết bị của bạn; chúng tôi không có máy chủ lưu đầu vào hay kết quả.",
+  "privacy.section.local.title": "Dữ liệu lưu trên thiết bị",
+  "privacy.section.local.body": "Trình duyệt có thể lưu cục bộ một vài tùy chọn nhỏ (qua <code>localStorage</code>): chủ đề màu, ngôn ngữ hiển thị và việc bạn đã chấp nhận tuyên bố miễn trừ trên trang. Thông tin này ở trên thiết bị và không gửi cho chúng tôi. Bạn có thể xóa bất cứ lúc nào trong cài đặt trình duyệt.",
+  "privacy.section.hosting.title": "Lưu trữ và bên thứ ba",
+  "privacy.section.hosting.body": "Trang được lưu trữ trên GitHub Pages; nhà cung cấp có thể xử lý nhật ký máy chủ web tiêu chuẩn (như địa chỉ IP và thời gian yêu cầu) theo chính sách riêng. Khi dùng trang, chúng tôi tải phông từ Google Fonts. Liên kết như hỗ trợ email hoặc \"Buy me a coffee\" mở dịch vụ bên ngoài với thực hành quyền riêng tư riêng.",
+  "privacy.section.contact.title": "Liên hệ",
+  "privacy.section.contact.body": "Câu hỏi về chính sách này? Gửi email tới <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a>.",
+  "privacy.section.changes.title": "Thay đổi",
+  "privacy.section.changes.body": "Chúng tôi có thể cập nhật trang này khi công cụ thay đổi. Phiên bản hiện tại luôn được đăng tại URL này."
 }

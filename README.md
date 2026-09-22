@@ -41,6 +41,7 @@ Any static file server works. The locale loader resolves paths from the director
 ```
 .
 ├── index.html          # Page markup and inline boot scripts (theme + locale)
+├── privacy.html        # Privacy policy (client-side, no data collection)
 ├── style.css           # Layout, themes, RTL-aware styles
 ├── script.js           # i18n, theme, disclaimer, calculator logic
 ├── favicon.svg

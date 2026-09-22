@@ -100,5 +100,26 @@
   "announce.accommodationYes": "调节需求为 {diopters}。",
   "announce.accommodationNo": "没有调节需求。",
 
-  "footer.copyright": "© 2026 Addison Graham，创作者。根据 MIT 许可证授权。"
+  "footer.nav.ariaLabel": "网站链接",
+  "footer.privacy": "隐私政策",
+  "footer.home": "计算器",
+  "footer.copyright": "© 2026 Addison Graham，创作者。根据 MIT 许可证授权。",
+
+  "privacy.page.title": "隐私政策 | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab 是一款在浏览器中运行的免费计算器。我们不收集个人数据，也不使用分析工具。",
+  "privacy.skip.link": "跳至隐私政策",
+  "privacy.header.title": "隐私政策",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "概要",
+  "privacy.section.summary.body": "Visual Acuity Lab 是一款完全在浏览器中运行的<strong>免费</strong>工具。我们<strong>不</strong>提供用户账户、不出售数据，也不在本网站使用广告或分析跟踪器。",
+  "privacy.section.noCollection.title": "我们不收集的内容",
+  "privacy.section.noCollection.body": "我们<strong>不</strong>要求您登录，也<strong>不</strong>会收到您在计算器中输入的数字。计算在您的设备上完成；我们没有存储您输入或结果的服务器。",
+  "privacy.section.local.title": "存储在您设备上的数据",
+  "privacy.section.local.body": "浏览器可能会在本地保存少量偏好设置（通过 <code>localStorage</code>）：颜色主题、显示语言以及您是否接受了网站免责声明。这些信息保留在您的设备上，不会发送给我们。您可随时在浏览器设置中清除。",
+  "privacy.section.hosting.title": "托管与第三方",
+  "privacy.section.hosting.body": "本网站托管在 GitHub Pages；托管方可能根据其政策处理标准 Web 服务器日志（如 IP 地址和请求时间）。使用本网站时会从 Google Fonts 加载字体。电子邮件支持或“Buy me a coffee”等链接会打开具有各自隐私做法的外部服务。",
+  "privacy.section.contact.title": "联系",
+  "privacy.section.contact.body": "对本政策有疑问？请发送邮件至 <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a>。",
+  "privacy.section.changes.title": "变更",
+  "privacy.section.changes.body": "工具更新时我们可能会修订本页面。当前版本始终发布于此 URL。"
 }

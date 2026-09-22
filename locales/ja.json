@@ -100,5 +100,26 @@
   "announce.accommodationYes": "調節需要は {diopters} です。",
   "announce.accommodationNo": "調節需要はありません。",
 
-  "footer.copyright": "© 2026 Addison Graham, Creator。MIT ライセンスの下でライセンスされています。"
+  "footer.nav.ariaLabel": "サイトリンク",
+  "footer.privacy": "プライバシーポリシー",
+  "footer.home": "計算機",
+  "footer.copyright": "© 2026 Addison Graham, Creator。MIT ライセンスの下でライセンスされています。",
+
+  "privacy.page.title": "プライバシーポリシー | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab はブラウザで動作する無料の計算ツールです。個人データの収集やアナリティクスは行いません。",
+  "privacy.skip.link": "プライバシーポリシーへスキップ",
+  "privacy.header.title": "プライバシーポリシー",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "概要",
+  "privacy.section.summary.body": "Visual Acuity Lab は、ウェブブラウザ内だけで動作する<strong>無料</strong>のツールです。ユーザーアカウントの運用、データの販売、本サイトでの広告やアナリティクストラッカーの使用は<strong>一切行いません</strong>。",
+  "privacy.section.noCollection.title": "収集しない情報",
+  "privacy.section.noCollection.body": "ログインを<strong>求めません</strong>し、計算機に入力した数値も<strong>受け取りません</strong>。計算はお使いの端末上で行われ、入力や結果を保存するサーバーはありません。",
+  "privacy.section.local.title": "端末に保存されるデータ",
+  "privacy.section.local.body": "ブラウザは、色テーマ、表示言語、サイト上の免責事項への同意など、少数の設定をローカル（<code>localStorage</code>）に保存することがあります。これらは端末に残り、当方には送信されません。ブラウザの設定からいつでも削除できます。",
+  "privacy.section.hosting.title": "ホスティングと第三者",
+  "privacy.section.hosting.body": "本サイトは GitHub Pages でホストされています。ホスト提供者は、自社のポリシーに基づき、標準的な Web サーバーログ（IP アドレスやリクエスト時刻など）を処理する場合があります。サイト利用時に Google Fonts からフォントを読み込みます。メールサポートや「Buy me a coffee」などのリンクは、それぞれ独自のプライバシー方針を持つ外部サービスを開きます。",
+  "privacy.section.contact.title": "お問い合わせ",
+  "privacy.section.contact.body": "本ポリシーについてのご質問は <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a> までご連絡ください。",
+  "privacy.section.changes.title": "変更",
+  "privacy.section.changes.body": "ツールの変更に伴い本ページを更新する場合があります。最新版は常にこの URL で公開されます。"
 }

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-page="privacy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visual Acuity Lab is a free, client-side calculator. We do not collect personal data or use analytics.">
+    <meta name="theme-color" content="#0a0b10">
+    <meta name="color-scheme" content="dark light">
+    <link rel="canonical" href="https://visualacuitylab.com/privacy.html">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://visualacuitylab.com/privacy.html">
+    <meta property="og:title" content="Privacy Policy | Visual Acuity Lab">
+    <meta property="og:description" content="Visual Acuity Lab is a free, client-side calculator. We do not collect personal data or use analytics.">
+    <meta name="twitter:card" content="summary">
+    <title>Privacy Policy | Visual Acuity Lab</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script>
+    (function () {
+        var html = document.documentElement;
+        var themeKey = "gvat-theme";
+        var langKey = "gvat-lang";
+        var theme;
+        try {
+            theme = localStorage.getItem(themeKey);
+        } catch (e) {
+            theme = null;
+        }
+        if (!theme) {
+            try {
+                theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+            } catch (e) {
+                theme = "dark";
+            }
+        }
+        html.setAttribute("data-theme", theme === "light" ? "light" : "dark");
+        var themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) {
+            themeColor.setAttribute("content", theme === "light" ? "#f4f6f9" : "#0a0b10");
+        }
+
+        var localeMeta = {
+            en: { lang: "en", dir: "ltr" },
+            es: { lang: "es", dir: "ltr" },
+            fr: { lang: "fr", dir: "ltr" },
+            de: { lang: "de", dir: "ltr" },
+            zh: { lang: "zh-Hans", dir: "ltr" },
+            ja: { lang: "ja", dir: "ltr" },
+            vi: { lang: "vi", dir: "ltr" },
+            ar: { lang: "ar", dir: "rtl" }
+        };
+        var locale;
+        try {
+            locale = localStorage.getItem(langKey);
+        } catch (e) {
+            locale = null;
+        }
+        if (!locale || !localeMeta[locale]) {
+            locale = "en";
+            try {
+                var langs = navigator.languages && navigator.languages.length
+                    ? navigator.languages
+                    : [navigator.language];
+                for (var i = 0; i < langs.length; i++) {
+                    var base = String(langs[i] || "").toLowerCase().split("-")[0];
+                    if (localeMeta[base]) {
+                        locale = base;
+                        break;
+                    }
+                }
+            } catch (e) {
+                locale = "en";
+            }
+        }
+        html.lang = localeMeta[locale].lang;
+        html.dir = localeMeta[locale].dir;
+    }());
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#main" data-i18n="privacy.skip.link">Skip to privacy policy</a>
+    <div class="top-bar" role="region" data-i18n-aria-label="topBar.ariaLabel" aria-label="Site tools">
+        <div class="lang-switcher">
+            <label for="lang-switcher" class="sr-only" data-i18n="langSwitcher.label">Language</label>
+            <div class="lang-switcher__field">
+                <select id="lang-switcher" class="lang-switcher__select" data-i18n-title="langSwitcher.title" title="Display language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="icon-link" id="theme-toggle" data-i18n-title="theme.title" title="Switch color theme" aria-label="Use light color theme" aria-pressed="false" data-mode="dark">
+            <span class="icon-link__icon" aria-hidden="true">
+                <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+            </span>
+        </button>
+        <a class="icon-link" id="support-link" href="mailto:grahamthetvi@icloud.com?subject=Graham%20Visual%20Acuity%20Tester%20Support" rel="noopener noreferrer" data-i18n-title="support.title" data-i18n-aria-label="support.ariaLabel" title="Email support" aria-label="Email support, opens mail app with subject pre-filled">
+            <span class="icon-link__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+            </span>
+        </a>
+        <a class="icon-link" id="coffee-link" href="https://buymeacoffee.com/grahamthetvi" target="_blank" rel="noopener noreferrer" data-i18n-title="coffee.title" data-i18n-aria-label="coffee.ariaLabel" title="Buy me a coffee" aria-label="Buy me a coffee (opens in a new tab)">
+            <span class="icon-link__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><line x1="6" x2="6" y1="2" y2="4"></line><line x1="10" x2="10" y1="2" y2="4"></line><line x1="14" x2="14" y1="2" y2="4"></line></svg>
+            </span>
+        </a>
+    </div>
+
+    <main class="container" id="main">
+        <header>
+            <h1 data-i18n="privacy.header.title">Privacy Policy</h1>
+            <p data-i18n="privacy.header.subtitle">Visual Acuity Lab (visualacuitylab.com)</p>
+        </header>
+
+        <article class="welcome-card legal-page">
+            <section aria-labelledby="privacy-summary">
+                <h2 id="privacy-summary" data-i18n="privacy.section.summary.title">Summary</h2>
+                <p data-i18n-html="privacy.section.summary.body">Visual Acuity Lab is a <strong>free</strong> tool that runs entirely in your web browser. We do <strong>not</strong> operate user accounts, sell data, or use advertising or analytics trackers on this site.</p>
+            </section>
+
+            <section aria-labelledby="privacy-no-collection">
+                <h2 id="privacy-no-collection" data-i18n="privacy.section.noCollection.title">What we do not collect</h2>
+                <p data-i18n-html="privacy.section.noCollection.body">We do <strong>not</strong> ask you to sign in and we do <strong>not</strong> receive the numbers you enter into the calculator. Calculations run on your device; we have no server that stores your inputs or results.</p>
+            </section>
+
+            <section aria-labelledby="privacy-local">
+                <h2 id="privacy-local" data-i18n="privacy.section.local.title">Data stored on your device</h2>
+                <p data-i18n-html="privacy.section.local.body">Your browser may save a few small preferences locally (using <code>localStorage</code>): color theme, display language, and whether you accepted the on-site disclaimer. This information stays on your device and is not sent to us. You can clear it anytime through your browser settings.</p>
+            </section>
+
+            <section aria-labelledby="privacy-hosting">
+                <h2 id="privacy-hosting" data-i18n="privacy.section.hosting.title">Hosting and third parties</h2>
+                <p data-i18n-html="privacy.section.hosting.body">The site is hosted on GitHub Pages; the host may process standard web server logs (such as IP address and request time) under its own policies. We load fonts from Google Fonts when you use the site. Links such as email support or &quot;Buy me a coffee&quot; open external services with their own privacy practices.</p>
+            </section>
+
+            <section aria-labelledby="privacy-contact">
+                <h2 id="privacy-contact" data-i18n="privacy.section.contact.title">Contact</h2>
+                <p data-i18n-html="privacy.section.contact.body">Questions about this policy? Email <a href="mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy">grahamthetvi@icloud.com</a>.</p>
+            </section>
+
+            <section aria-labelledby="privacy-changes">
+                <h2 id="privacy-changes" data-i18n="privacy.section.changes.title">Changes</h2>
+                <p data-i18n="privacy.section.changes.body">We may update this page as the tool changes. The current version is always published at this URL.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <nav class="site-footer__links" data-i18n-aria-label="footer.nav.ariaLabel" aria-label="Site links">
+            <a href="index.html" data-i18n="footer.home">Calculator</a>
+        </nav>
+        <p data-i18n="footer.copyright">&copy; 2026 Addison Graham, Creator. Licensed under the MIT License.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

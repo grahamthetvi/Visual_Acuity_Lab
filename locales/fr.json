@@ -100,5 +100,26 @@
   "announce.accommodationYes": "La demande accommodative est {diopters}.",
   "announce.accommodationNo": "Il n’y a pas de demande accommodative.",
 
-  "footer.copyright": "© 2026 Addison Graham, créateur. Sous licence MIT."
+  "footer.nav.ariaLabel": "Liens du site",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.home": "Calculateur",
+  "footer.copyright": "© 2026 Addison Graham, créateur. Sous licence MIT.",
+
+  "privacy.page.title": "Politique de confidentialité | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab est un calculateur gratuit exécuté dans votre navigateur. Nous ne collectons pas de données personnelles et n’utilisons pas d’analytique.",
+  "privacy.skip.link": "Aller à la politique de confidentialité",
+  "privacy.header.title": "Politique de confidentialité",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "Résumé",
+  "privacy.section.summary.body": "Visual Acuity Lab est un outil <strong>gratuit</strong> qui s’exécute entièrement dans votre navigateur. Nous n’exploitons <strong>pas</strong> de comptes utilisateur, ne vendons pas de données et n’utilisons pas de publicité ni de traceurs analytiques sur ce site.",
+  "privacy.section.noCollection.title": "Ce que nous ne collectons pas",
+  "privacy.section.noCollection.body": "Nous ne vous demandons <strong>pas</strong> de vous connecter et nous ne recevons <strong>pas</strong> les chiffres que vous saisissez dans le calculateur. Les calculs s’effectuent sur votre appareil ; nous n’avons pas de serveur qui stocke vos entrées ou résultats.",
+  "privacy.section.local.title": "Données stockées sur votre appareil",
+  "privacy.section.local.body": "Votre navigateur peut enregistrer localement quelques petites préférences (via <code>localStorage</code>) : thème de couleur, langue d’affichage et acceptation de l’avertissement du site. Ces informations restent sur votre appareil et ne nous sont pas envoyées. Vous pouvez les effacer à tout moment dans les paramètres du navigateur.",
+  "privacy.section.hosting.title": "Hébergement et tiers",
+  "privacy.section.hosting.body": "Le site est hébergé sur GitHub Pages ; l’hébergeur peut traiter des journaux serveur standard (adresse IP, heure de la requête, etc.) selon ses propres politiques. Nous chargeons des polices depuis Google Fonts lorsque vous utilisez le site. Des liens tels que le support par e-mail ou « Buy me a coffee » ouvrent des services externes soumis à leurs propres pratiques de confidentialité.",
+  "privacy.section.contact.title": "Contact",
+  "privacy.section.contact.body": "Des questions sur cette politique ? Écrivez à <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a>.",
+  "privacy.section.changes.title": "Modifications",
+  "privacy.section.changes.body": "Nous pouvons mettre à jour cette page lorsque l’outil évolue. La version en vigueur est toujours publiée à cette URL."
 }

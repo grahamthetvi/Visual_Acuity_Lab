@@ -100,5 +100,26 @@
   "announce.accommodationYes": "الطلب التكيفي هو {diopters}.",
   "announce.accommodationNo": "لا يوجد طلب تكيفي.",
 
-  "footer.copyright": "© 2026 Addison Graham, Creator. مرخص بموجب ترخيص MIT."
+  "footer.nav.ariaLabel": "روابط الموقع",
+  "footer.privacy": "سياسة الخصوصية",
+  "footer.home": "الحاسبة",
+  "footer.copyright": "© 2026 Addison Graham, Creator. مرخص بموجب ترخيص MIT.",
+
+  "privacy.page.title": "سياسة الخصوصية | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab أداة حساب مجانية تعمل في متصفحك. لا نجمع بيانات شخصية ولا نستخدم التحليلات.",
+  "privacy.skip.link": "انتقل إلى سياسة الخصوصية",
+  "privacy.header.title": "سياسة الخصوصية",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "ملخص",
+  "privacy.section.summary.body": "Visual Acuity Lab أداة <strong>مجانية</strong> تعمل بالكامل في متصفح الويب. <strong>لا</strong> نُشغّل حسابات مستخدمين، ولا نبيع البيانات، ولا نستخدم إعلانات أو متتبعات تحليلات على هذا الموقع.",
+  "privacy.section.noCollection.title": "ما لا نجمعه",
+  "privacy.section.noCollection.body": "<strong>لا</strong> نطلب منك تسجيل الدخول و<strong>لا</strong> نتلقى الأرقام التي تُدخلها في الحاسبة. تتم الحسابات على جهازك؛ لا يوجد لدينا خادم يخزّن مدخلاتك أو نتائجك.",
+  "privacy.section.local.title": "البيانات المخزنة على جهازك",
+  "privacy.section.local.body": "قد يحفظ متصفحك بعض التفضيلات البسيطة محلياً (باستخدام <code>localStorage</code>): سمة الألوان، لغة العرض، وما إذا كنت قد قبَلت إخلاء المسؤولية على الموقع. تبقى هذه المعلومات على جهازك ولا تُرسل إلينا. يمكنك مسحها في أي وقت من إعدادات المتصفح.",
+  "privacy.section.hosting.title": "الاستضافة والجهات الخارجية",
+  "privacy.section.hosting.body": "يُستضاف الموقع على GitHub Pages؛ قد يعالج المضيف سجلات خادم ويب قياسية (مثل عنوان IP ووقت الطلب) وفق سياساته. نحمّل الخطوط من Google Fonts عند استخدام الموقع. روابط مثل الدعم بالبريد أو \"Buy me a coffee\" تفتح خدمات خارجية لها ممارسات خصوصية خاصة.",
+  "privacy.section.contact.title": "التواصل",
+  "privacy.section.contact.body": "أسئلة حول هذه السياسة؟ راسل <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a>.",
+  "privacy.section.changes.title": "التغييرات",
+  "privacy.section.changes.body": "قد نحدّث هذه الصفحة عند تغيّر الأداة. تُنشر النسخة الحالية دائماً على هذا الرابط."
 }
