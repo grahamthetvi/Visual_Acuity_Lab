@@ -104,9 +104,13 @@ function applyDocumentLang(locale) {
     document.documentElement.dir = meta.dir;
 }
 
+function isPrivacyPage() {
+    return document.documentElement.getAttribute("data-page") === "privacy";
+}
+
 function applyMetaAndTitle() {
-    const descText = t("meta.description");
-    const titleText = t("page.title");
+    const descText = t(isPrivacyPage() ? "privacy.meta.description" : "meta.description");
+    const titleText = t(isPrivacyPage() ? "privacy.page.title" : "page.title");
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute("content", descText);
     const ogDesc = document.querySelector('meta[property="og:description"]');
@@ -576,9 +580,13 @@ async function initApp() {
     }
 
     initThemeToggle();
-    initDisclaimerDialog();
+    if (document.getElementById("disclaimer-dialog")) {
+        initDisclaimerDialog();
+    }
     initLangSwitcher();
-    initCalculator();
+    if (document.getElementById("acuity-form")) {
+        initCalculator();
+    }
 }
 
 if (document.readyState === "loading") {

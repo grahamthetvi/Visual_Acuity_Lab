@@ -100,5 +100,26 @@
   "announce.accommodationYes": "The accommodative demand is {diopters}.",
   "announce.accommodationNo": "There is no accommodative demand.",
 
-  "footer.copyright": "© 2026 Addison Graham, Creator. Licensed under the MIT License."
+  "footer.nav.ariaLabel": "Site links",
+  "footer.privacy": "Privacy Policy",
+  "footer.home": "Calculator",
+  "footer.copyright": "© 2026 Addison Graham, Creator. Licensed under the MIT License.",
+
+  "privacy.page.title": "Privacy Policy | Visual Acuity Lab",
+  "privacy.meta.description": "Visual Acuity Lab is a free, client-side calculator. We do not collect personal data or use analytics.",
+  "privacy.skip.link": "Skip to privacy policy",
+  "privacy.header.title": "Privacy Policy",
+  "privacy.header.subtitle": "Visual Acuity Lab (visualacuitylab.com)",
+  "privacy.section.summary.title": "Summary",
+  "privacy.section.summary.body": "Visual Acuity Lab is a <strong>free</strong> tool that runs entirely in your web browser. We do <strong>not</strong> operate user accounts, sell data, or use advertising or analytics trackers on this site.",
+  "privacy.section.noCollection.title": "What we do not collect",
+  "privacy.section.noCollection.body": "We do <strong>not</strong> ask you to sign in and we do <strong>not</strong> receive the numbers you enter into the calculator. Calculations run on your device; we have no server that stores your inputs or results.",
+  "privacy.section.local.title": "Data stored on your device",
+  "privacy.section.local.body": "Your browser may save a few small preferences locally (using <code>localStorage</code>): color theme, display language, and whether you accepted the on-site disclaimer. This information stays on your device and is not sent to us. You can clear it anytime through your browser settings.",
+  "privacy.section.hosting.title": "Hosting and third parties",
+  "privacy.section.hosting.body": "The site is hosted on GitHub Pages; the host may process standard web server logs (such as IP address and request time) under its own policies. We load fonts from Google Fonts when you use the site. Links such as email support or \"Buy me a coffee\" open external services with their own privacy practices.",
+  "privacy.section.contact.title": "Contact",
+  "privacy.section.contact.body": "Questions about this policy? Email <a href=\"mailto:grahamthetvi@icloud.com?subject=Visual%20Acuity%20Lab%20Privacy\">grahamthetvi@icloud.com</a>.",
+  "privacy.section.changes.title": "Changes",
+  "privacy.section.changes.body": "We may update this page as the tool changes. The current version is always published at this URL."
 }
