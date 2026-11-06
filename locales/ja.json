@@ -35,12 +35,14 @@
   "header.title": "視力計算機",
   "header.tagline": "相当するスネレン視力を計算します。",
   "about.title": "このツールについて",
-  "about.purpose": "この計算機は、物体の実寸と観察者からの距離から、相当するスネレン視力を求めます。観察距離（近見、中間、遠見）も分類し、予想される調節需要を報告します。",
+  "about.purpose": "この計算機は、物体の実寸と観察者からの距離から、相当するスネレン視力を求めます。観察距離（近見、中間、遠見、遠方）も分類し、予想される調節需要を報告します。",
   "about.logicSummary": "臨床ロジックと計算式（専門家向け）",
   "about.visualAngleIntro": "<strong>視角：</strong>正確な幾何学的二等分三角形の公式を用い、分（arc-minutes）でなす角を求めます：",
   "about.equivalentAcuityIntro": "<strong>相当視力：</strong>標準の 5 分視標に基づきスネレン分母を導出します：",
-  "about.accommodativeIntro": "<strong>調節需要：</strong>観察距離に基づきジオプターで計算します：",
-  "about.alternateFormats": "<strong>その他の視力表記（N = 20、D = スネレン分母）：</strong>MAR = D / N；LogMAR = log<sub>10</sub>(MAR)；小数視力 = N / D；メートル表記 6/X は D<sub>metric</sub> = D &times; (6/20) を用い、6/round(D<sub>metric</sub>) と表示；入力した距離での M 単位：M = distance_m &times; (D / N)。",
+  "about.accommodativeIntro": "<strong>調節需要：</strong>観察距離に基づきジオプターで計算し、すべてのゾーンに表示します：",
+  "about.zones": "<strong>距離ゾーン：</strong>近見は 16 インチ（40.6 cm）以内です。中間は 16 インチを超え、10 フィート未満です。遠見は 10 フィート以上 6 メートル未満です。遠方は 6 メートル（約 20 フィート）以上で、通常のスネレン検査距離です。",
+  "about.snellenRounding": "<strong>表示する分数：</strong>スネレン分母は最も近い整数に丸めます。0.5 未満は小数第2位まで表示します。",
+  "about.alternateFormats": "<strong>その他の視力表記（N = 20、D = 表示するスネレン分母）：</strong>MAR = D / N；LogMAR = log<sub>10</sub>(MAR)；小数視力 = N / D；メートル表記 6/X は D<sub>metric</sub> = D &times; (6/20) を用い、小数第1位まで表示して末尾の .0 は省きます；入力した距離での M 単位：M = distance_m &times; (D / N)。",
 
   "form.ariaLabel": "視力計算フォーム",
   "form.legend.objectSize": "物体サイズの指定",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "近見視力",
   "results.zone.intermediate": "中間視力",
-  "results.zone.far": "遠見視力（距離）",
+  "results.zone.far": "遠見視力",
+  "results.zone.distance": "遠方視力",
   "results.angleUnit": "分（arc-minutes）",
   "results.marUnit": "分",
-  "results.diopters.na": "該当なし（遠見ゾーン）",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "計算が完了しました。物体サイズ {sizeVal} {sizeUnitLabel}、距離 {distVal} {distUnitLabel} の場合、相当視力は 20 分の {d} です。",
   "announce.altBlock": " MAR は {mar} 分、LogMAR は {logmar}、小数視力は {decimal}、メートル視力は {metric}、この距離の M 単位は {munits} M です。",
   "announce.zone": " 距離ゾーンは {zone} です。",
-  "announce.accommodationYes": "調節需要は {diopters} です。",
-  "announce.accommodationNo": "調節需要はありません。",
-
+  "announce.accommodationYes": " 調節需要は {diopters} です。",
   "footer.copyright": "© 2026 Addison Graham, Creator。MIT ライセンスの下でライセンスされています。"
 }

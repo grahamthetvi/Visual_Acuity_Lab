@@ -146,7 +146,7 @@
 
         <section class="welcome-card" aria-labelledby="welcome-heading">
             <h2 id="welcome-heading" data-i18n="about.title">About This Tool</h2>
-            <p class="purpose-text" data-i18n="about.purpose">This calculator determines equivalent Snellen visual acuity from an object's physical size and its distance from the viewer. It also categorizes the viewing distance (Near, Intermediate, Far) and reports the expected accommodative demand.</p>
+            <p class="purpose-text" data-i18n="about.purpose">This calculator determines equivalent Snellen visual acuity from an object's physical size and its distance from the viewer. It also categorizes the viewing distance (Near, Intermediate, Far, Distance) and reports the expected accommodative demand.</p>
             
             <details class="logic-details">
                 <summary data-i18n="about.logicSummary">Clinical Logic & Formulas (For Professionals)</summary>
@@ -157,10 +157,13 @@
                     <p data-i18n-html="about.equivalentAcuityIntro"><strong>Equivalent Acuity:</strong> Derives the Snellen denominator based on the standard 5 arc-minute letter:</p>
                     <code class="formula-code">(visual_angle_minutes / 5) &times; 20</code>
                     
-                    <p data-i18n-html="about.accommodativeIntro"><strong>Accommodative Demand:</strong> Calculated in Diopters based on viewing distance:</p>
+                    <p data-i18n-html="about.accommodativeIntro"><strong>Accommodative Demand:</strong> Calculated in Diopters based on viewing distance, and shown for every zone:</p>
                     <code class="formula-code">1 / distance_in_meters</code>
 
-                    <p data-i18n-html="about.alternateFormats"><strong>Alternate acuity (N = 20, D = Snellen denominator):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; metric 6/X uses D<sub>metric</sub> = D &times; (6/20), shown as 6/round(D<sub>metric</sub>); M-units at the entered distance: M = distance_m &times; (D / N).</p>
+                    <p data-i18n-html="about.zones"><strong>Distance zones:</strong> Near is 16 inches (40.6 cm) or closer. Intermediate is farther than 16 inches and closer than 10 feet. Far runs from 10 feet up to, but not including, 6 meters. Distance is 6 meters (about 20 feet) or farther, the usual Snellen testing distance.</p>
+                    <p data-i18n-html="about.snellenRounding"><strong>Displayed fraction:</strong> The Snellen denominator is rounded to the nearest integer. A result under 0.5 is shown to two decimal places.</p>
+
+                    <p data-i18n-html="about.alternateFormats"><strong>Alternate acuity (N = 20, D = displayed Snellen denominator):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; metric 6/X uses D<sub>metric</sub> = D &times; (6/20), shown to one decimal place with a trailing .0 omitted; M-units at the entered distance: M = distance_m &times; (D / N).</p>
                 </div>
             </details>
         </section>

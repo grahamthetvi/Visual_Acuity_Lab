@@ -35,12 +35,14 @@
   "header.title": "Công cụ tính thị lực",
   "header.tagline": "Tính thị lực Snellen tương đương.",
   "about.title": "Giới thiệu công cụ này",
-  "about.purpose": "Công cụ này xác định thị lực Snellen tương đương từ kích thước vật lý của vật thể và khoảng cách từ người xem. Nó cũng phân loại khoảng cách nhìn (gần, trung gian, xa) và báo cáo nhu cầu điều tiết dự kiến.",
+  "about.purpose": "Công cụ này xác định thị lực Snellen tương đương từ kích thước vật lý của vật thể và khoảng cách từ người xem. Nó cũng phân loại khoảng cách nhìn (gần, trung gian, xa, khoảng cách chuẩn) và báo cáo nhu cầu điều tiết dự kiến.",
   "about.logicSummary": "Logic lâm sàng và công thức (dành cho chuyên gia)",
   "about.visualAngleIntro": "<strong>Góc thị giác:</strong> dùng công thức hình học chính xác của tam giác chia đôi để xác định góc đối diện theo phút cung:",
   "about.equivalentAcuityIntro": "<strong>Thị lực tương đương:</strong> suy ra mẫu số Snellen dựa trên chữ cái chuẩn 5 phút cung:",
-  "about.accommodativeIntro": "<strong>Nhu cầu điều tiết:</strong> được tính bằng điốp dựa trên khoảng cách nhìn:",
-  "about.alternateFormats": "<strong>Thị lực thay thế (N = 20, D = mẫu số Snellen):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); thập phân = N / D; hệ mét 6/X dùng D<sub>metric</sub> = D &times; (6/20), hiển thị là 6/round(D<sub>metric</sub>); đơn vị M tại khoảng cách đã nhập: M = distance_m &times; (D / N).",
+  "about.accommodativeIntro": "<strong>Nhu cầu điều tiết:</strong> được tính bằng điốp dựa trên khoảng cách nhìn và hiển thị ở mọi vùng:",
+  "about.zones": "<strong>Vùng khoảng cách:</strong> Gần là 16 inch (40,6 cm) trở xuống. Trung gian xa hơn 16 inch và gần hơn 10 feet. Xa từ 10 feet đến dưới 6 mét. Khoảng cách chuẩn là 6 mét (khoảng 20 feet) trở lên, khoảng cách kiểm tra Snellen thông thường.",
+  "about.snellenRounding": "<strong>Phân số hiển thị:</strong> Mẫu số Snellen được làm tròn đến số nguyên gần nhất. Kết quả dưới 0,5 được hiển thị với hai chữ số thập phân.",
+  "about.alternateFormats": "<strong>Thị lực thay thế (N = 20, D = mẫu số Snellen đã hiển thị):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); thập phân = N / D; hệ mét 6/X dùng D<sub>metric</sub> = D &times; (6/20), hiển thị với một chữ số thập phân và bỏ ,0 ở cuối; đơn vị M tại khoảng cách đã nhập: M = distance_m &times; (D / N).",
 
   "form.ariaLabel": "Biểu mẫu tính thị lực",
   "form.legend.objectSize": "Thông số kích thước vật thể",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "Thị lực gần",
   "results.zone.intermediate": "Thị lực trung gian",
-  "results.zone.far": "Thị lực xa (khoảng cách)",
+  "results.zone.far": "Thị lực xa",
+  "results.zone.distance": "Thị lực khoảng cách chuẩn",
   "results.angleUnit": "phút cung",
   "results.marUnit": "phút cung",
-  "results.diopters.na": "Không áp dụng (vùng xa)",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "Tính toán hoàn tất. Với kích thước vật thể {sizeVal} {sizeUnitLabel} ở khoảng cách {distVal} {distUnitLabel}, thị lực tương đương là 20 trên {d}.",
   "announce.altBlock": " MAR là {mar} phút cung, LogMAR là {logmar}, thị lực thập phân là {decimal}, thị lực hệ mét là {metric}, và đơn vị M tại khoảng cách này là {munits} M.",
   "announce.zone": " Vùng khoảng cách là {zone}.",
-  "announce.accommodationYes": "Nhu cầu điều tiết là {diopters}.",
-  "announce.accommodationNo": "Không có nhu cầu điều tiết.",
-
+  "announce.accommodationYes": " Nhu cầu điều tiết là {diopters}.",
   "footer.copyright": "© 2026 Addison Graham, Người tạo. Được cấp phép theo Giấy phép MIT."
 }

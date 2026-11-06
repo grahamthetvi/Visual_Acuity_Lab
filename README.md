@@ -10,9 +10,9 @@ This is a static, client-side calculator for clinicians, students, and anyone wh
 
 - Equivalent Snellen acuity (20/X)
 - Alternate formats: MAR, LogMAR, decimal, metric (6/X), and M-units
-- Distance zone (near, intermediate, far)
+- Distance zone (near, intermediate, far, distance)
 - Visual angle in arc-minutes
-- Accommodative demand in diopters (when applicable)
+- Accommodative demand in diopters at every distance
 
 The clinical formulas are documented in the UI under **Clinical Logic & Formulas (For Professionals)**.
 

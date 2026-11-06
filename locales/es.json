@@ -35,12 +35,14 @@
   "header.title": "Calculadora de agudeza visual",
   "header.tagline": "Calcule la agudeza visual Snellen equivalente.",
   "about.title": "Acerca de esta herramienta",
-  "about.purpose": "Esta calculadora determina la agudeza visual Snellen equivalente a partir del tamaño físico de un objeto y su distancia al observador. También clasifica la distancia de observación (cerca, intermedia, lejos) e informa la demanda acomodativa esperada.",
+  "about.purpose": "Esta calculadora determina la agudeza visual Snellen equivalente a partir del tamaño físico de un objeto y su distancia al observador. También clasifica la distancia de observación (cerca, intermedia, lejos, distancia) e informa la demanda acomodativa esperada.",
   "about.logicSummary": "Lógica clínica y fórmulas (para profesionales)",
   "about.visualAngleIntro": "<strong>Ángulo visual:</strong> utiliza la fórmula geométrica exacta del triángulo dividido para determinar el ángulo subtendido en minutos de arco:",
   "about.equivalentAcuityIntro": "<strong>Agudeza equivalente:</strong> obtiene el denominador de Snellen a partir de la letra estándar de 5 minutos de arco:",
-  "about.accommodativeIntro": "<strong>Demanda acomodativa:</strong> se calcula en dioptrías según la distancia de observación:",
-  "about.alternateFormats": "<strong>Agudeza alternativa (N = 20, D = denominador de Snellen):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; la métrica 6/X usa D<sub>metric</sub> = D &times; (6/20), mostrada como 6/round(D<sub>metric</sub>); unidades M a la distancia introducida: M = distance_m &times; (D / N).",
+  "about.accommodativeIntro": "<strong>Demanda acomodativa:</strong> se calcula en dioptrías según la distancia de observación y se muestra en todas las zonas:",
+  "about.zones": "<strong>Zonas de distancia:</strong> Cerca es 16 pulgadas (40,6 cm) o menos. Intermedia es más de 16 pulgadas y menos de 10 pies. Lejos va desde 10 pies hasta, sin incluir, 6 metros. Distancia es 6 metros (unos 20 pies) o más, la distancia habitual de la prueba de Snellen.",
+  "about.snellenRounding": "<strong>Fracción mostrada:</strong> El denominador de Snellen se redondea al entero más cercano. Un resultado inferior a 0,5 se muestra con dos decimales.",
+  "about.alternateFormats": "<strong>Agudeza alternativa (N = 20, D = denominador de Snellen mostrado):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); decimal = N / D; la métrica 6/X usa D<sub>metric</sub> = D &times; (6/20), mostrada con un decimal y sin el ,0 final; unidades M a la distancia introducida: M = distance_m &times; (D / N).",
 
   "form.ariaLabel": "Formulario de cálculo de agudeza visual",
   "form.legend.objectSize": "Especificaciones del tamaño del objeto",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "Visión de cerca",
   "results.zone.intermediate": "Visión intermedia",
-  "results.zone.far": "Visión de lejos (distancia)",
+  "results.zone.far": "Visión de lejos",
+  "results.zone.distance": "Visión a distancia",
   "results.angleUnit": "minutos de arco",
   "results.marUnit": "min arco",
-  "results.diopters.na": "N/D (zona de lejos)",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "Cálculo completado. Para un objeto de {sizeVal} {sizeUnitLabel} a una distancia de {distVal} {distUnitLabel}, la agudeza visual equivalente es 20 sobre {d}.",
   "announce.altBlock": " MAR es {mar} minutos de arco, LogMAR es {logmar}, la agudeza decimal es {decimal}, la agudeza métrica es {metric} y las unidades M a esta distancia son {munits} M.",
   "announce.zone": " La zona de distancia es {zone}.",
-  "announce.accommodationYes": "La demanda acomodativa es {diopters}.",
-  "announce.accommodationNo": "No hay demanda acomodativa.",
-
+  "announce.accommodationYes": " La demanda acomodativa es {diopters}.",
   "footer.copyright": "© 2026 Addison Graham, Creador. Licenciado bajo la licencia MIT."
 }

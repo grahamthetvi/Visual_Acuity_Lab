@@ -293,8 +293,9 @@ function initLangSwitcher() {
 }
 
 // --- Calculator ---
-const NEAR_MAX_M = 0.4064;
-const FAR_MIN_M = 3.048;
+const NEAR_MAX_M = 0.4064; // 16 in
+const FAR_MIN_M = 3.048; // 10 ft
+const DISTANCE_MIN_M = 6; // 6 m lane; 20 ft (6.096 m) is included
 
 function toMeters(value, unit) {
     if (unit === "in") {
@@ -328,6 +329,43 @@ function calculateSnellenDenominator(visual_angle_minutes) {
     return (visual_angle_minutes / 5.0) * 20.0;
 }
 
+function trimFixed(text) {
+    if (!text.includes(".")) return text;
+    return text.replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function formatMetricFraction(d) {
+    const exact = d * METRIC_SNELLEN_RATIO;
+    const tenths = Math.round(exact * 10) / 10;
+    const tenthsMatch = Math.abs(exact - tenths) <= 1e-8 * Math.max(1, Math.abs(exact));
+    if (tenthsMatch) {
+        const text = Number.isInteger(tenths) ? String(tenths) : tenths.toFixed(1);
+        return `6/${text}`;
+    }
+    const hundredths = Math.round(exact * 100) / 100;
+    return `6/${trimFixed(hundredths.toFixed(2))}`;
+}
+
+/**
+ * Nearest integer Snellen denominator. Below 0.5 the integer would be 0,
+ * so keep two decimal places (or two significant digits if that is still 0).
+ * @returns {{ display: string, numeric: number }}
+ */
+function displayedSnellenDenominator(raw) {
+    const rounded = Math.round(raw);
+    if (rounded >= 1) {
+        return { display: String(rounded), numeric: rounded };
+    }
+    const hundredths = Math.round(raw * 100) / 100;
+    if (hundredths > 0) {
+        const display = trimFixed(hundredths.toFixed(2));
+        return { display, numeric: Number(display) };
+    }
+    const display = raw.toPrecision(2);
+    const numeric = Number(display);
+    return { display, numeric: numeric > 0 ? numeric : raw };
+}
+
 function getAlternateAcuityFormats(d, distanceM) {
     if (!(d > 0) || !Number.isFinite(d)) {
         return null;
@@ -335,22 +373,22 @@ function getAlternateAcuityFormats(d, distanceM) {
     const mar = d / SNELLEN_NUMERATOR;
     const logMar = Math.log10(mar);
     const decimal = SNELLEN_NUMERATOR / d;
-    const metricDenom = Math.round(d * METRIC_SNELLEN_RATIO);
     const mUnit = distanceM * (d / SNELLEN_NUMERATOR);
     return {
         mar,
         logMar,
         decimal,
-        metricStr: `6/${metricDenom}`,
+        metricStr: formatMetricFraction(d),
         mUnit,
     };
 }
 
-/** @returns {'near'|'intermediate'|'far'} */
+/** @returns {'near'|'intermediate'|'far'|'distance'} */
 function classifyDistanceZoneKey(distance_m) {
     if (distance_m <= NEAR_MAX_M) return "near";
     if (distance_m < FAR_MIN_M) return "intermediate";
-    return "far";
+    if (distance_m < DISTANCE_MIN_M) return "far";
+    return "distance";
 }
 
 function calculateDiopters(distance_m) {
@@ -398,8 +436,7 @@ function validateInput() {
     return isValid;
 }
 
-function diopterDisplay(needsAccommodation, dioptersValue) {
-    if (!needsAccommodation) return t("results.diopters.na");
+function diopterDisplay(dioptersValue) {
     const unit = t("results.diopters.unit");
     return `${dioptersValue.toFixed(2)} ${unit}`;
 }
@@ -418,7 +455,6 @@ function renderResultsFromState(state) {
         visualAngleMin,
         dSnellen,
         alt,
-        needsAccommodation,
         dioptersValue,
     } = state;
 
@@ -458,7 +494,7 @@ function renderResultsFromState(state) {
         document.getElementById("res-munit").textContent = `${alt.mUnit.toFixed(2)} M`;
     }
 
-    const diopterText = diopterDisplay(needsAccommodation, dioptersValue);
+    const diopterText = diopterDisplay(dioptersValue);
     document.getElementById("res-diopters").textContent = diopterText;
 
     const sUnitText = sizeUnit.options[sizeUnit.selectedIndex].text;
@@ -482,9 +518,7 @@ function renderResultsFromState(state) {
     });
     announcement += altText;
     announcement += t("announce.zone", { zone: zoneLabel });
-    announcement += needsAccommodation
-        ? t("announce.accommodationYes", { diopters: diopterText })
-        : t("announce.accommodationNo");
+    announcement += t("announce.accommodationYes", { diopters: diopterText });
 
     announcer.textContent = announcement;
 }
@@ -519,15 +553,9 @@ function initCalculator() {
             const zoneKey = classifyDistanceZoneKey(distance_m);
             const visualAngleMin = calculateExactVisualAngle(size_m, distance_m);
             const snellenDenom = calculateSnellenDenominator(visualAngleMin);
-            const needsAccommodation = zoneKey === "near" || zoneKey === "intermediate";
-
-            const dSnellen = Math.round(snellenDenom);
-            const alt = getAlternateAcuityFormats(dSnellen, distance_m);
-
-            let dioptersValue = 0;
-            if (needsAccommodation) {
-                dioptersValue = calculateDiopters(distance_m);
-            }
+            const snellen = displayedSnellenDenominator(snellenDenom);
+            const alt = getAlternateAcuityFormats(snellen.numeric, distance_m);
+            const dioptersValue = calculateDiopters(distance_m);
 
             lastCalcState = {
                 sizeVal,
@@ -538,9 +566,8 @@ function initCalculator() {
                 distance_m,
                 zoneKey,
                 visualAngleMin,
-                dSnellen,
+                dSnellen: snellen.display,
                 alt,
-                needsAccommodation,
                 dioptersValue,
             };
 

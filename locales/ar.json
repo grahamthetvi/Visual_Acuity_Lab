@@ -35,12 +35,14 @@
   "header.title": "حاسبة حدة البصر",
   "header.tagline": "احسب حدة البصر المكافئة لسنيلين.",
   "about.title": "حول هذه الأداة",
-  "about.purpose": "تحدد هذه الحاسبة حدة البصر المكافئة لسنيلين من خلال الحجم المادي للجسم ومسافة رؤيته. كما تصنف مسافة الرؤية (قريبة، متوسطة، بعيدة) وتبلغ عن الطلب التكيفي المتوقع.",
+  "about.purpose": "تحدد هذه الحاسبة حدة البصر المكافئة لسنيلين من خلال الحجم المادي للجسم ومسافة رؤيته. كما تصنف مسافة الرؤية (قريبة، متوسطة، بعيدة، مسافة الفحص) وتبلغ عن الطلب التكيفي المتوقع.",
   "about.logicSummary": "المنطق السريري والصيغ (للمتخصصين)",
   "about.visualAngleIntro": "<strong>زاوية الرؤية:</strong> تستخدم الصيغة الهندسية الدقيقة للمثلث المنقسم لتحديد الزاوية المقابلة بالدقائق القوسية:",
   "about.equivalentAcuityIntro": "<strong>الحدة المكافئة:</strong> تستنتج مقام سنيلين بناءً على الحرف القياسي المكون من 5 دقائق قوسية:",
-  "about.accommodativeIntro": "<strong>الطلب التكيفي:</strong> يُحسب بالديوبتر بناءً على مسافة الرؤية:",
-  "about.alternateFormats": "<strong>حدة البصر البديلة (N = 20، D = مقام سنيلين):</strong> MAR = D / N؛ LogMAR = log₁₀(MAR)؛ النظام العشري = N / D؛ المتري 6/X يستخدم D_metric = D × (6/20)، ويُعرض كـ 6/round(D_metric)؛ وحدات M عند المسافة المدخلة: M = distance_m × (D / N).",
+  "about.accommodativeIntro": "<strong>الطلب التكيفي:</strong> يُحسب بالديوبتر بناءً على مسافة الرؤية ويُعرض في كل نطاق:",
+  "about.zones": "<strong>نطاقات المسافة:</strong> القريبة هي 16 بوصة (40.6 سم) أو أقرب. المتوسطة أبعد من 16 بوصة وأقرب من 10 أقدام. البعيدة من 10 أقدام وحتى أقل من 6 أمتار. مسافة الفحص هي 6 أمتار (نحو 20 قدمًا) أو أبعد، وهي مسافة اختبار سنيلين المعتادة.",
+  "about.snellenRounding": "<strong>الكسر المعروض:</strong> يُقرَّب مقام سنيلين إلى أقرب عدد صحيح. النتيجة الأقل من 0.5 تُعرض بخانتين عشريتين.",
+  "about.alternateFormats": "<strong>حدة البصر البديلة (N = 20، D = مقام سنيلين المعروض):</strong> MAR = D / N؛ LogMAR = log₁₀(MAR)؛ النظام العشري = N / D؛ المتري 6/X يستخدم D_metric = D × (6/20)، ويُعرض بمنزلة عشرية واحدة مع حذف .0 الزائدة؛ وحدات M عند المسافة المدخلة: M = distance_m × (D / N).",
 
   "form.ariaLabel": "نموذج حساب حدة البصر",
   "form.legend.objectSize": "مواصفات حجم الجسم",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "الرؤية القريبة",
   "results.zone.intermediate": "الرؤية المتوسطة",
-  "results.zone.far": "الرؤية البعيدة (المسافة)",
+  "results.zone.far": "الرؤية البعيدة",
+  "results.zone.distance": "رؤية مسافة الفحص",
   "results.angleUnit": "دقائق قوسية",
   "results.marUnit": "دقيقة قوسية",
-  "results.diopters.na": "غير متوفر (المنطقة البعيدة)",
   "results.diopters.unit": "ديوبتر (D)",
   "results.conversion.size": "({in} بوصة | {mm} مم)",
   "results.conversion.distance": "({in} بوصة | {ft} قدم | {m} م)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "اكتمل الحساب. لحجم جسم يبلغ {sizeVal} {sizeUnitLabel} على مسافة {distVal} {distUnitLabel}، فإن حدة البصر المكافئة هي 20 على {d}.",
   "announce.altBlock": "الـ MAR هو {mar} دقيقة قوسية، الـ LogMAR هو {logmar}، الحدة العشرية هي {decimal}، الحدة المترية هي {metric}، ووحدات M عند هذه المسافة هي {munits} M.",
   "announce.zone": "منطقة المسافة هي {zone}.",
-  "announce.accommodationYes": "الطلب التكيفي هو {diopters}.",
-  "announce.accommodationNo": "لا يوجد طلب تكيفي.",
-
+  "announce.accommodationYes": " الطلب التكيفي هو {diopters}.",
   "footer.copyright": "© 2026 Addison Graham, Creator. مرخص بموجب ترخيص MIT."
 }

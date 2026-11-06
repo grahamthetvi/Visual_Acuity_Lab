@@ -35,12 +35,14 @@
   "header.title": "视力计算器",
   "header.tagline": "计算等效斯内伦视力。",
   "about.title": "关于本工具",
-  "about.purpose": "本计算器根据物体的实际尺寸及其与观察者的距离来确定等效斯内伦视力。它还会对观看距离进行分类（近、中、远），并报告预期的调节需求。",
+  "about.purpose": "本计算器根据物体的实际尺寸及其与观察者的距离来确定等效斯内伦视力。它还会对观看距离进行分类（近、中、远、标准远距），并报告预期的调节需求。",
   "about.logicSummary": "临床逻辑与公式（供专业人士）",
   "about.visualAngleIntro": "<strong>视角：</strong>使用精确的几何对分三角形公式，以角分确定所张成的角度：",
   "about.equivalentAcuityIntro": "<strong>等效视力：</strong>根据标准 5 角分视标推导斯内伦分母：",
-  "about.accommodativeIntro": "<strong>调节需求：</strong>根据观看距离以屈光度计算：",
-  "about.alternateFormats": "<strong>其他视力格式（N = 20，D = 斯内伦分母）：</strong>MAR = D / N；LogMAR = log<sub>10</sub>(MAR)；小数视力 = N / D；米制 6/X 使用 D<sub>metric</sub> = D &times; (6/20)，显示为 6/round(D<sub>metric</sub>)；在所输入距离处的 M 单位：M = distance_m &times; (D / N)。",
+  "about.accommodativeIntro": "<strong>调节需求：</strong>根据观看距离以屈光度计算，并在每个分区中显示：",
+  "about.zones": "<strong>距离分区：</strong>近为 16 英寸（40.6 厘米）或更近。中介于 16 英寸与 10 英尺之间。远为 10 英尺至不足 6 米。标准远距为 6 米（约 20 英尺）或更远，即常用的斯内伦检查距离。",
+  "about.snellenRounding": "<strong>显示的分数：</strong>斯内伦分母四舍五入为最接近的整数。小于 0.5 的结果保留两位小数。",
+  "about.alternateFormats": "<strong>其他视力格式（N = 20，D = 显示的斯内伦分母）：</strong>MAR = D / N；LogMAR = log<sub>10</sub>(MAR)；小数视力 = N / D；米制 6/X 使用 D<sub>metric</sub> = D &times; (6/20)，保留一位小数并省略末尾的 .0；在所输入距离处的 M 单位：M = distance_m &times; (D / N)。",
 
   "form.ariaLabel": "视力计算表单",
   "form.legend.objectSize": "物体尺寸参数",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "近视力",
   "results.zone.intermediate": "中间视力",
-  "results.zone.far": "远视力（距离）",
+  "results.zone.far": "远视力",
+  "results.zone.distance": "标准远距",
   "results.angleUnit": "角分",
   "results.marUnit": "角分",
-  "results.diopters.na": "不适用（远距分区）",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "计算完成。物体尺寸为 {sizeVal} {sizeUnitLabel}、距离为 {distVal} {distUnitLabel} 时，等效视力为 20 分之 {d}。",
   "announce.altBlock": " MAR 为 {mar} 角分，LogMAR 为 {logmar}，小数视力为 {decimal}，米制视力为 {metric}，此距离的 M 单位为 {munits} M。",
   "announce.zone": " 距离分区为 {zone}。",
-  "announce.accommodationYes": "调节需求为 {diopters}。",
-  "announce.accommodationNo": "没有调节需求。",
-
+  "announce.accommodationYes": " 调节需求为 {diopters}。",
   "footer.copyright": "© 2026 Addison Graham，创作者。根据 MIT 许可证授权。"
 }

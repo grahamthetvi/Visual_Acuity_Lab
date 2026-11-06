@@ -35,12 +35,14 @@
   "header.title": "Calculateur d’acuité visuelle",
   "header.tagline": "Calculez l’acuité visuelle Snellen équivalente.",
   "about.title": "À propos de cet outil",
-  "about.purpose": "Ce calculateur détermine l’acuité visuelle Snellen équivalente à partir de la taille physique d’un objet et de sa distance par rapport à l’observateur. Il classe également la distance d’observation (près, intermédiaire, loin) et indique la demande accommodative attendue.",
+  "about.purpose": "Ce calculateur détermine l’acuité visuelle Snellen équivalente à partir de la taille physique d’un objet et de sa distance par rapport à l’observateur. Il classe également la distance d’observation (près, intermédiaire, loin, distance) et indique la demande accommodative attendue.",
   "about.logicSummary": "Logique clinique et formules (pour les professionnels)",
   "about.visualAngleIntro": "<strong>Angle visuel :</strong> utilise la formule géométrique exacte du triangle partagé pour déterminer l’angle sous-tendu en minutes d’arc :",
   "about.equivalentAcuityIntro": "<strong>Acuité équivalente :</strong> dérive le dénominateur de Snellen à partir de la lettre standard de 5 minutes d’arc :",
-  "about.accommodativeIntro": "<strong>Demande accommodative :</strong> calculée en dioptries selon la distance d’observation :",
-  "about.alternateFormats": "<strong>Acuité alternative (N = 20, D = dénominateur de Snellen) :</strong> MAR = D / N ; LogMAR = log<sub>10</sub>(MAR) ; décimale = N / D ; la métrique 6/X utilise D<sub>metric</sub> = D &times; (6/20), affichée sous la forme 6/round(D<sub>metric</sub>) ; unités M à la distance saisie : M = distance_m &times; (D / N).",
+  "about.accommodativeIntro": "<strong>Demande accommodative :</strong> calculée en dioptries selon la distance d’observation, et affichée dans chaque zone :",
+  "about.zones": "<strong>Zones de distance :</strong> Près correspond à 16 pouces (40,6 cm) ou moins. Intermédiaire est au-delà de 16 pouces et en deçà de 10 pieds. Loin va de 10 pieds jusqu’à 6 mètres non compris. Distance est 6 mètres (environ 20 pieds) ou plus, la distance habituelle du test de Snellen.",
+  "about.snellenRounding": "<strong>Fraction affichée :</strong> Le dénominateur de Snellen est arrondi à l’entier le plus proche. Un résultat inférieur à 0,5 est affiché avec deux décimales.",
+  "about.alternateFormats": "<strong>Acuité alternative (N = 20, D = dénominateur de Snellen affiché) :</strong> MAR = D / N ; LogMAR = log<sub>10</sub>(MAR) ; décimale = N / D ; la métrique 6/X utilise D<sub>metric</sub> = D &times; (6/20), affichée avec une décimale et sans ,0 final ; unités M à la distance saisie : M = distance_m &times; (D / N).",
 
   "form.ariaLabel": "Formulaire de calcul d’acuité visuelle",
   "form.legend.objectSize": "Spécifications de la taille de l’objet",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "Vision de près",
   "results.zone.intermediate": "Vision intermédiaire",
-  "results.zone.far": "Vision de loin (distance)",
+  "results.zone.far": "Vision de loin",
+  "results.zone.distance": "Vision à distance",
   "results.angleUnit": "minutes d’arc",
   "results.marUnit": "min d’arc",
-  "results.diopters.na": "N/A (zone de loin)",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "Calcul terminé. Pour un objet de {sizeVal} {sizeUnitLabel} à une distance de {distVal} {distUnitLabel}, l’acuité visuelle équivalente est 20 sur {d}.",
   "announce.altBlock": " Le MAR est de {mar} minutes d’arc, le LogMAR est de {logmar}, l’acuité décimale est de {decimal}, l’acuité métrique est {metric}, et les unités M à cette distance sont {munits} M.",
   "announce.zone": " La zone de distance est {zone}.",
-  "announce.accommodationYes": "La demande accommodative est {diopters}.",
-  "announce.accommodationNo": "Il n’y a pas de demande accommodative.",
-
+  "announce.accommodationYes": " La demande accommodative est {diopters}.",
   "footer.copyright": "© 2026 Addison Graham, créateur. Sous licence MIT."
 }

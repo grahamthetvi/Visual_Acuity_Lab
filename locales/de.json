@@ -35,12 +35,14 @@
   "header.title": "Sehschärfe-Rechner",
   "header.tagline": "Berechnen Sie die äquivalente Snellen-Sehschärfe.",
   "about.title": "Über dieses Tool",
-  "about.purpose": "Dieser Rechner ermittelt die äquivalente Snellen-Sehschärfe aus der physischen Größe eines Objekts und seinem Abstand zum Betrachter. Er klassifiziert außerdem die Betrachtungsentfernung (Nah, Intermediär, Fern) und gibt den erwarteten Akkommodationsbedarf an.",
+  "about.purpose": "Dieser Rechner ermittelt die äquivalente Snellen-Sehschärfe aus der physischen Größe eines Objekts und seinem Abstand zum Betrachter. Er klassifiziert außerdem die Betrachtungsentfernung (Nah, Intermediär, Fern, Distanz) und gibt den erwarteten Akkommodationsbedarf an.",
   "about.logicSummary": "Klinische Logik und Formeln (für Fachleute)",
   "about.visualAngleIntro": "<strong>Sehwinkel:</strong> verwendet die exakte geometrische Formel des geteilten Dreiecks, um den Sehwinkel in Bogenminuten zu bestimmen:",
   "about.equivalentAcuityIntro": "<strong>Äquivalente Sehschärfe:</strong> leitet den Snellen-Nenner aus dem Standardbuchstaben von 5 Bogenminuten ab:",
-  "about.accommodativeIntro": "<strong>Akkommodationsbedarf:</strong> berechnet in Dioptrien anhand der Betrachtungsentfernung:",
-  "about.alternateFormats": "<strong>Alternative Sehschärfe (N = 20, D = Snellen-Nenner):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); Dezimal = N / D; metrisch 6/X verwendet D<sub>metric</sub> = D &times; (6/20), dargestellt als 6/round(D<sub>metric</sub>); M-Einheiten bei der eingegebenen Entfernung: M = distance_m &times; (D / N).",
+  "about.accommodativeIntro": "<strong>Akkommodationsbedarf:</strong> berechnet in Dioptrien anhand der Betrachtungsentfernung und in jeder Zone angezeigt:",
+  "about.zones": "<strong>Entfernungszonen:</strong> Nah ist 16 Zoll (40,6 cm) oder näher. Intermediär liegt jenseits von 16 Zoll und näher als 10 Fuß. Fern reicht von 10 Fuß bis unter 6 Meter. Distanz ist 6 Meter (etwa 20 Fuß) oder weiter, die übliche Snellen-Prüfentfernung.",
+  "about.snellenRounding": "<strong>Angezeigter Bruch:</strong> Der Snellen-Nenner wird auf die nächste ganze Zahl gerundet. Ein Ergebnis unter 0,5 wird mit zwei Dezimalstellen angezeigt.",
+  "about.alternateFormats": "<strong>Alternative Sehschärfe (N = 20, D = angezeigter Snellen-Nenner):</strong> MAR = D / N; LogMAR = log<sub>10</sub>(MAR); Dezimal = N / D; metrisch 6/X verwendet D<sub>metric</sub> = D &times; (6/20), mit einer Dezimalstelle und ohne nachgestelltes ,0; M-Einheiten bei der eingegebenen Entfernung: M = distance_m &times; (D / N).",
 
   "form.ariaLabel": "Formular zur Sehschärfeberechnung",
   "form.legend.objectSize": "Angaben zur Objektgröße",
@@ -86,10 +88,10 @@
 
   "results.zone.near": "Nahsicht",
   "results.zone.intermediate": "Intermediärsicht",
-  "results.zone.far": "Fernsicht (Distanz)",
+  "results.zone.far": "Fernsicht",
+  "results.zone.distance": "Distanzsicht",
   "results.angleUnit": "Bogenminuten",
   "results.marUnit": "Bogenmin.",
-  "results.diopters.na": "k. A. (Fernzone)",
   "results.diopters.unit": "D",
   "results.conversion.size": "({in} in | {mm} mm)",
   "results.conversion.distance": "({in} in | {ft} ft | {m} m)",
@@ -97,8 +99,6 @@
   "announce.calcCompleteIntro": "Berechnung abgeschlossen. Für eine Objektgröße von {sizeVal} {sizeUnitLabel} in einer Entfernung von {distVal} {distUnitLabel} beträgt die äquivalente Sehschärfe 20 über {d}.",
   "announce.altBlock": " MAR beträgt {mar} Bogenminuten, LogMAR beträgt {logmar}, die dezimale Sehschärfe beträgt {decimal}, die metrische Sehschärfe ist {metric}, und die M-Einheiten bei dieser Entfernung betragen {munits} M.",
   "announce.zone": " Die Entfernungszone ist {zone}.",
-  "announce.accommodationYes": "Der Akkommodationsbedarf beträgt {diopters}.",
-  "announce.accommodationNo": "Es besteht kein Akkommodationsbedarf.",
-
+  "announce.accommodationYes": " Der Akkommodationsbedarf beträgt {diopters}.",
   "footer.copyright": "© 2026 Addison Graham, Urheber. Lizenziert unter der MIT-Lizenz."
 }
