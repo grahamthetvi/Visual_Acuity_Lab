@@ -17,8 +17,9 @@ import math
 import sys
 
 # ── Zone thresholds (in meters) ──────────────────────────────────────────────
-NEAR_MAX_M = 0.4064    # <= 16 inches
-FAR_MIN_M  = 3.048     # >= 120 inches (10 feet)
+NEAR_MAX_M = 0.4064       # <= 16 inches
+FAR_MIN_M = 3.048         # >= 10 feet and < 6 m
+DISTANCE_MIN_M = 6.0       # >= 6 m; includes the 20 ft (6.096 m) lane
 
 # ── Input helpers ────────────────────────────────────────────────────────────
 def to_meters(value: float, unit: str) -> float:
@@ -30,17 +31,21 @@ def to_meters(value: float, unit: str) -> float:
         return value * 0.3048
     elif unit in ("mm", "millimeter", "millimeters"):
         return value / 1000.0
+    elif unit in ("cm", "centimeter", "centimeters"):
+        return value / 100.0
+    elif unit in ("m", "meter", "meters"):
+        return value
     else:
-        raise ValueError(f"Unrecognized unit '{unit}'. Use: in, ft, mm")
+        raise ValueError(f"Unrecognized unit '{unit}'. Use: in, ft, mm, cm, m")
 
 # ── Core optical calculation ─────────────────────────────────────────────────
 def calculate_exact_visual_angle(size_m: float, distance_m: float) -> float:
     """
     Return the exact visual angle subtended by the object in arc-minutes.
     
-    Instead of the standard clinical approximation (arctan(size/dist)), 
-    this uses the exact geometric formula: 2 * arctan(size / (2 * distance)).
-    It also uses the optimized radian-to-minute constant (10800 / pi).
+    The object is centered on the line of sight, so the full angle is
+    2 * arctan(size / (2 * distance)). For small angles this matches
+    size/distance in radians. Radians convert to arc-minutes by 10800 / pi.
     """
     angle_rad = 2.0 * math.atan(size_m / (2.0 * distance_m))
     angle_minutes = angle_rad * (10800.0 / math.pi)
@@ -50,14 +55,29 @@ def calculate_snellen_denominator(visual_angle_minutes: float) -> float:
     """Derive the Snellen denominator (the 'X' in 20/X)."""
     return (visual_angle_minutes / 5.0) * 20.0
 
+def round_half_away(value: float) -> int:
+    """Match the site's Math.round for non-negative values."""
+    return int(math.floor(value + 0.5))
+
+def format_snellen_denominator(raw: float) -> str:
+    """Nearest integer, or two decimals when that integer would be 0."""
+    rounded = round_half_away(raw)
+    if rounded >= 1:
+        return str(rounded)
+    hundredths = round_half_away(raw * 100) / 100.0
+    if hundredths > 0:
+        return f"{hundredths:.2f}".rstrip("0").rstrip(".")
+    return f"{raw:.2g}"
+
 def classify_distance(distance_m: float) -> str:
     """Assign a vision zone label based on viewing distance."""
     if distance_m <= NEAR_MAX_M:
         return "Near Vision"
-    elif distance_m < FAR_MIN_M:
+    if distance_m < FAR_MIN_M:
         return "Intermediate Vision"
-    else:
-        return "Far Vision (Distance)"
+    if distance_m < DISTANCE_MIN_M:
+        return "Far Vision"
+    return "Distance Vision"
 
 def calculate_diopters(distance_m: float) -> float:
     """Accommodative demand in Diopters (1 / distance_in_meters)."""
@@ -69,7 +89,7 @@ def report(size_m: float, distance_m: float, size_label: str, distance_label: st
     zone = classify_distance(distance_m)
     visual_angle_min = calculate_exact_visual_angle(size_m, distance_m)
     snellen_denom = calculate_snellen_denominator(visual_angle_min)
-    needs_accommodation = zone in ("Near Vision", "Intermediate Vision")
+    snellen_display = format_snellen_denominator(snellen_denom)
 
     # Conversions for display
     distance_in = distance_m / 0.0254
@@ -86,20 +106,15 @@ def report(size_m: float, distance_m: float, size_label: str, distance_label: st
     print("─" * 55)
     print(f"  Distance zone     : {zone}")
     print(f"  Visual angle      : {visual_angle_min:.2f} arc-minutes")
-    print(f"  Equivalent acuity : 20/{snellen_denom:.0f}")
-
-    if needs_accommodation:
-        diopters = calculate_diopters(distance_m)
-        print(f"  Accommodative demand: {diopters:.2f} D")
-    else:
-        print(f"  Accommodative demand: N/A (Far zone)")
+    print(f"  Equivalent acuity : 20/{snellen_display}")
+    print(f"  Accommodative demand: {calculate_diopters(distance_m):.2f} D")
     print("═" * 55 + "\n")
 
 # ── Interactive prompt ────────────────────────────────────────────────────────
 def interactive_mode() -> None:
     print("\n── Ultimate Visual Acuity Calculator ─────────────────")
-    print("Accepted size units     : inches (in), millimeters (mm)")
-    print("Accepted distance units : inches (in), feet (ft), millimeters (mm)")
+    print("Accepted size units     : inches (in), feet (ft), millimeters (mm), centimeters (cm), meters (m)")
+    print("Accepted distance units : inches (in), feet (ft), millimeters (mm), centimeters (cm), meters (m)")
     print("Type 'exit' or 'quit' to close.")
     print("──────────────────────────────────────────────────────\n")
 
